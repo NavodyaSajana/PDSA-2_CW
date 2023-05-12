@@ -18,18 +18,24 @@ import java.util.logging.Logger;
 public class EightQueenPuzzleController {
     EightQueenPuzzleModel model = new EightQueenPuzzleModel();
     
-    public void checkPatterns(String value) throws SQLException{
+    public void checkPatterns(String value){
         Array2D pattern = new Array2D();
         
         int userArray[][] = new int[8][8];
         int systemArray[][] = new int[8][8];
         
         userArray=pattern.create(value);
+        //testing
         pattern.display(userArray);
         
         ResultSet rs = model.getPatterns();
-        while(rs.next()){
-            rs.getString(2);
+        try {
+            while(rs.next()){
+                rs.getString(2);
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(EightQueenPuzzleController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
     
