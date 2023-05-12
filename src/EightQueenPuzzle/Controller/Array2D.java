@@ -33,7 +33,7 @@ public class Array2D {
         }
     }
 
-    public boolean isEqual(char array1[][], char array2[][]) {
+    public boolean isEqual(int array1[][], int array2[][]) {
         int diffCount = 0;
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
