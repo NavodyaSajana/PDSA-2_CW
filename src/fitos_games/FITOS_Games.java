@@ -5,7 +5,6 @@
 package fitos_games;
 
 import EightQueenPuzzle.Controller.EightQueenPuzzleController;
-import java.sql.SQLException;
 
 /**
  *
@@ -16,10 +15,10 @@ public class FITOS_Games {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // TODO code application logic here
         EightQueenPuzzleController ctrl = new EightQueenPuzzleController();
-        ctrl.checkPatterns("0001000000000010001000000000000101000000000010001000000000000101");
+        ctrl.checkPatterns("0001000000000010001000000000000101000000000010001000000000000100");
     }
     
 }

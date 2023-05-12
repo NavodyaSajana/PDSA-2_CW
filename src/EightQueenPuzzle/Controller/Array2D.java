@@ -33,20 +33,22 @@ public class Array2D {
         }
     }
 
-    public boolean isEqual(char array1[][], char array2[][]) {
+    public boolean isEqual(int array1[][], int array2[][]) {
         int diffCount = 0;
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 if (array1[row][col] != array2[row][col]) {
                     diffCount++;
+                }else{
+                    System.out.println("Matching");
                 }
             }
         }
         System.out.println(diffCount);
-        if (diffCount != 0) {
-            return false;
-        } else {
+        if (diffCount == 0) {
             return true;
+        } else {
+            return false;
         }
     }
 }

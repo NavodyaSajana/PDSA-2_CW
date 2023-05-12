@@ -25,16 +25,24 @@ public class EightQueenPuzzleController {
         int systemArray[][] = new int[8][8];
         
         userArray=pattern.create(value);
-        //testing
-        pattern.display(userArray);
         
         ResultSet rs = model.getPatterns();
         try {
+            boolean isPatternFound =false;
             while(rs.next()){
-                rs.getString(2);
+                systemArray=pattern.create(rs.getString(2));
+                if(pattern.isEqual(systemArray, userArray)==true){
+                    System.out.println("Congradulations This is a correct pattern");
+                    insertPatternFounder(rs.getInt(1));
+                    isPatternFound=true;
+                    break;                    
+                }
             }
+            if(!isPatternFound)
+            {
+                System.out.println("this pattern is not found");
+            }                    
         } catch (SQLException ex) {
-            //Logger.getLogger(EightQueenPuzzleController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
         }
     }
