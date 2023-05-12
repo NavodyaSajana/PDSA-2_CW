@@ -24,7 +24,7 @@ public class Database {
     //this method is use to eshtablish the connection between database and application
     public boolean startConnection(){
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_test","root","");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_fitos_game","root","");
             if(con != null && !con.isClosed())
                 return true;
             else
