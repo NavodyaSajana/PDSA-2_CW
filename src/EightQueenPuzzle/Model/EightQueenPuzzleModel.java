@@ -29,4 +29,8 @@ public class EightQueenPuzzleModel {
     public ResultSet getGamePlayData(int patternID){
         return db.getData("select * from tbl_e8_gameplay where pattern_ID="+patternID+"");
     }
+
+    public ResultSet getMaxGamePlay() {
+        return db.getData("select max(player_id) as max_PID from tbl_e8_gameplay");
+    }
 }
