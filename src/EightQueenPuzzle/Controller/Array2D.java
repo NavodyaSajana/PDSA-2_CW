@@ -39,12 +39,9 @@ public class Array2D {
             for (int col = 0; col < 8; col++) {
                 if (array1[row][col] != array2[row][col]) {
                     diffCount++;
-                }else{
-                    System.out.println("Matching");
                 }
             }
         }
-        System.out.println(diffCount);
         if (diffCount == 0) {
             return true;
         } else {
