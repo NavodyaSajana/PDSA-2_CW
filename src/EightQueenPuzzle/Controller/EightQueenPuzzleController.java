@@ -41,13 +41,39 @@ public class EightQueenPuzzleController {
                 }
             }
             if (!isPatternFound) {
-                System.out.println("this pattern is incorrect found");
+                System.out.println("This pattern is incorrect found");
+            } else{
+                if(allPatternsFound()){
+                    deleteDataFromTable();
+                }
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
 
+    //delete if all patterns found
+    public boolean allPatternsFound() throws SQLException{
+        ResultSet rs = model.getPatterns();
+        while(rs.next()){
+            if(!patternFound(rs.getInt(1))){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean patternFound(int patternID) throws SQLException{
+        ResultSet rs=model.getGamePlayData(patternID);
+        return rs.isBeforeFirst();
+    }
+    
+    public void deleteDataFromTable() throws SQLException{
+        model.deleteData();
+        System.out.println("All patterns have been found. Data deleted from the table.");
+        
+    }
+    
     public void insertPatternFounder(int patternID) throws SQLException {
         ResultSet rs = model.getGamePlayData(patternID);
         if (rs.isBeforeFirst()) {
@@ -90,5 +116,28 @@ public class EightQueenPuzzleController {
 
         return playerName;
     }
+    
+//    public void deletePlayerData(int patternID){
+//        try{
+//            ResultSet rs = model.getGamePlayData(patternID);
+//            if(rs.isBeforeFirst()){
+//                //resultset not niull
+//                while(rs.next()){
+//                    int gamePlayID = rs.getInt(1);
+//                    boolean isSuccess = model.deletePlayer(gamePlayID);
+//                    if(isSuccess){
+//                        System.out.println("Data has been successfully deleted.");
+//                    } else{
+//                        System.out.println("Something went wrong while deleting the data.");
+//                    }
+//                }
+//            } else{
+//                //resultset null
+//                 System.out.println("No player data found for the given pattern ID.");
+//            }
+//        }catch(SQLException ex){
+//        System.out.println(ex);
+//        }
+//    }
 
 }

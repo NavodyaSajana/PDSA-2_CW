@@ -11,6 +11,12 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Java%20Projects/PDSA/PDSA-2_CW/src/EightQueenPuzzle/Model/EightQueenPuzzleModel.java</file>
+            <file>file:/D:/Java%20Projects/PDSA/PDSA-2_CW/src/EightQueenPuzzle/View/EightQueenPuzzleView.java</file>
+            <file>file:/D:/Java%20Projects/PDSA/PDSA-2_CW/src/EightQueenPuzzle/Controller/Array2D.java</file>
+            <file>file:/D:/Java%20Projects/PDSA/PDSA-2_CW/src/EightQueenPuzzle/Controller/EightQueenPuzzleController.java</file>
+            <file>file:/D:/Java%20Projects/PDSA/PDSA-2_CW/src/Components/Database.java</file>
+        </group>
     </open-files>
 </project-private>
