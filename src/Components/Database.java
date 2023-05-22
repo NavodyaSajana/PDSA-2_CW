@@ -61,6 +61,7 @@ public class Database {
             return false;
     }
     
+    
     /**
      * this method is used to get data from the database.
      * ResultSet will be returns as the query.
@@ -87,4 +88,15 @@ public class Database {
         }else
             return null;
     }
+    
+    public int executeUpdate(String query) throws SQLException{
+        startConnection();
+        stmt=null;
+        stmt = con.createStatement();
+        int rowsAffected = stmt.executeUpdate(query);
+        stmt.close();
+        return rowsAffected;
+        
+    }
+   
 }

@@ -33,4 +33,8 @@ public class EightQueenPuzzleModel {
     public ResultSet getMaxGamePlay() {
         return db.getData("select max(player_id) as max_PID from tbl_e8_gameplay");
     }
+    
+   public void deleteData(){
+        db.insertDeleteUpdate_Data("Dellete from tbl_e8_gameplay");
+   }
 }
