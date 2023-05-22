@@ -4,10 +4,6 @@
  */
 package fitos_games;
 
-import EightQueenPuzzle.Controller.EightQueenPuzzleController;
-import Huffman.Controller.HuffmanController;
-import Huffman.Huffman;
-
 /**
  *
  * @author Sajana
@@ -18,7 +14,7 @@ public class FITOS_Games {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here       
+        
     }
     
 }

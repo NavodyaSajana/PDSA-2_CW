@@ -37,8 +37,6 @@ public class HuffmanController {
         
         //String customString = "Sajana";
         String customString = genrateCustText();
-        
-        
         System.out.println("Enter the decoded value for below Text");
         String customEncode = hf.encode(customString);
         System.out.println(customEncode);
