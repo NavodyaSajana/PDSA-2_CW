@@ -1,3 +1,5 @@
+package FindTheShortestPath2.Controller;
+
 
 import FindTheShortestPath2.Dijkstra;
 import FindTheShortestPath2.Graph;
