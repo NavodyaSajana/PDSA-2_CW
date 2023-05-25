@@ -4,6 +4,7 @@
  */
 package EightQueenPuzzle.Controller;
 
+import EightQueenPuzzle.View.EightQueens;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,9 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class Array2D {
 
-    public int[][] create(String value) {
-        int charCount = 0;
+    public int[][] create(String value) throws Exception {
         int[][] array = new int[8][8];
+        int charCount = 0;
+
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
                 array[row][col] = Integer.parseInt(value.charAt(charCount) + "");
@@ -27,7 +29,7 @@ public class Array2D {
     public void display(int[][] array) {
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {
-                System.out.print(array[row][col]+"\t");
+                System.out.print(array[row][col] + "\t");
             }
             System.out.println();
         }

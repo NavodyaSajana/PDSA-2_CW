@@ -64,6 +64,10 @@ import javax.swing.JLabel;
     public LableRound() {
         setOpaque(false);
     }
+    
+    public LableRound(String name) {
+        setOpaque(false);
+    }
 
     @Override
     protected void paintComponent(Graphics grphcs) {

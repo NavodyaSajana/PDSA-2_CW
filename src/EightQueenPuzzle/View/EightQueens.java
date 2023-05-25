@@ -4,11 +4,14 @@
  */
 package EightQueenPuzzle.View;
 
+import EightQueenPuzzle.Controller.EightQueenPuzzleController;
 import fitos_games.Home;
 import fitos_games.LableRound;
 import java.awt.Color;
 import java.awt.Image;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +25,51 @@ public class EightQueens extends javax.swing.JFrame {
     public EightQueens() {
         initComponents();
         this.setTitle("Eight Queens Puzzle Game");
+        //setupBasics();
+    }
+
+    EightQueenPuzzleController e8queen = new EightQueenPuzzleController();
+    int queenCount = 8;
+
+    public void setupBasics() {
+
+        availableQueens.setText("" + queenCount);
+        int totpattern = 0;
+        int totCom = 0;
+        try {
+            totpattern = e8queen.getTotPatterns();
+            totCom = e8queen.getTotCompletion();
+
+            ///getting winners
+            String[] names = e8queen.getPreviousWinners();
+            if (names.length != 0) {
+                String message = "Here are the previous Winners\n";
+                for (int c = 0; c < names.length; c++) {
+                    message += (c + 1) + ". " + names[c] + "\n";
+                }
+                JOptionPane.showMessageDialog(this, message, "Winners...", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+            if (totpattern == totCom) {
+                if (JOptionPane.showConfirmDialog(this, "**Winner count is fully reached**\nWould you like to reset the game?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == 0) {
+                    if (e8queen.deleteDataFromTable()) {
+                        JOptionPane.showMessageDialog(this, "Success..", "Done", JOptionPane.INFORMATION_MESSAGE);
+                        CompletedSolutionCount.setText("");
+                        setupBasics();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error..", "Error", JOptionPane.ERROR);
+                    }
+                }
+            }
+
+            CompletedSolutionCount.setText("" + totCom);
+            AvailableSolutionCount.setText("" + totpattern);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error (Unable to load Total Patterns and Completions): " + ex, "Error...", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error (Unable to load Total Patterns and Completions): " + ex, "Error...", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     public void showQueen(LableRound queen) {
@@ -30,14 +78,25 @@ public class EightQueens extends javax.swing.JFrame {
         Image imgScale = img.getScaledInstance(queen.getWidth(), queen.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon ScaledIcon = new ImageIcon(imgScale);
         queen.setIcon(ScaledIcon);
+        if (queenCount != 0) {
+            queenCount -= 1;
+            availableQueens.setText("" + queenCount);
+        } else {
+            JOptionPane.showMessageDialog(this, "Maximum Numer of Queens are used...", "Sorry...", JOptionPane.WARNING_MESSAGE);
+            hideQueen(queen, true);
+        }
     }
 
     public void hideQueen(LableRound queen) {
-        ImageIcon icon = new ImageIcon("");
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(queen.getWidth(), queen.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon ScaledIcon = new ImageIcon(imgScale);
-        queen.setIcon(ScaledIcon);
+        if (queen.getIcon() != null) {
+            queen.setIcon(null);
+            queenCount += 1;
+            availableQueens.setText("" + queenCount);
+        }
+    }
+
+    public void hideQueen(LableRound queen, boolean noCount) {
+        queen.setIcon(null);
     }
 
     /**
@@ -188,6 +247,11 @@ public class EightQueens extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         A1.setBackground(new java.awt.Color(255, 255, 255));
         A1.setPreferredSize(new java.awt.Dimension(78, 64));
@@ -3720,7 +3784,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void A1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A1MouseClicked
         // TODO add your handling code here:
-       // QA1.setBackground(Color.decode("#FFFF00"));
+        // QA1.setBackground(Color.decode("#FFFF00"));
         showQueen(QA1);
     }//GEN-LAST:event_A1MouseClicked
 
@@ -3731,25 +3795,25 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA1MouseClicked
 
     private void A2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseEntered
-       
+
         A2.setBackground(Color.decode("#FFFF00"));
         QA2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_A2MouseEntered
 
     private void QA2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA2MouseClicked
         // TODO add your handling code here:
-       // QA2.setBackground(Color.decode("#000000"));
+        // QA2.setBackground(Color.decode("#000000"));
         hideQueen(QA2);
     }//GEN-LAST:event_QA2MouseClicked
 
     private void A2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseExited
-       
+
         A2.setBackground(Color.decode("#000000"));
         QA2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_A2MouseExited
 
     private void A2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseClicked
-      
+
         //QA2.setBackground(Color.decode("#FFFF00"));
         showQueen(QA2);
     }//GEN-LAST:event_A2MouseClicked
@@ -3760,8 +3824,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A3MouseEntered
 
     private void A3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A3MouseExited
-       A3.setBackground(Color.decode("#FFFFFF"));
-       QA3.setBackground(Color.decode("#FFFFFF"));
+        A3.setBackground(Color.decode("#FFFFFF"));
+        QA3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_A3MouseExited
 
     private void A3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A3MouseClicked
@@ -3770,7 +3834,7 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A3MouseClicked
 
     private void QA3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA3MouseClicked
-       // QA3.setBackground(Color.decode("#FFFFFF"));
+        // QA3.setBackground(Color.decode("#FFFFFF"));
         hideQueen(QA3);
     }//GEN-LAST:event_QA3MouseClicked
 
@@ -3780,43 +3844,43 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA1MouseEntered
 
     private void QA1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA1MouseExited
-       QA1.setBackground(Color.decode("#FFFFFF"));
-       A1.setBackground(Color.decode("#FFFFFF"));
+        QA1.setBackground(Color.decode("#FFFFFF"));
+        A1.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QA1MouseExited
 
     private void A5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A5MouseEntered
-         A5.setBackground(Color.decode("#FFFF00"));
+        A5.setBackground(Color.decode("#FFFF00"));
         QA5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_A5MouseEntered
 
     private void A5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A5MouseExited
-         A5.setBackground(Color.decode("#FFFFFF"));
+        A5.setBackground(Color.decode("#FFFFFF"));
         QA5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_A5MouseExited
 
     private void A5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A5MouseClicked
         //QA5.setBackground(Color.decode("#FFFF00"));
         showQueen(QA5);
-        
+
     }//GEN-LAST:event_A5MouseClicked
 
     private void QA5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA5MouseEntered
-       QA5.setBackground(Color.decode("#FFFF00"));
+        QA5.setBackground(Color.decode("#FFFF00"));
         A5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QA5MouseEntered
 
     private void QA5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA5MouseExited
         QA5.setBackground(Color.decode("#FFFFFF"));
-       A5.setBackground(Color.decode("#FFFFFF"));
+        A5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QA5MouseExited
 
     private void QA5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA5MouseClicked
-      //QA5.setBackground(Color.decode("#000000"));
+        //QA5.setBackground(Color.decode("#000000"));
         hideQueen(QA5);
     }//GEN-LAST:event_QA5MouseClicked
 
     private void QA2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA2MouseEntered
-         
+
         A2.setBackground(Color.decode("#FFFF00"));
         QA2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QA2MouseEntered
@@ -3842,8 +3906,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A4MouseEntered
 
     private void A4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A4MouseExited
-       A4.setBackground(Color.decode("#000000"));
-       QA4.setBackground(Color.decode("#000000"));
+        A4.setBackground(Color.decode("#000000"));
+        QA4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_A4MouseExited
 
     private void A4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A4MouseClicked
@@ -3851,8 +3915,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A4MouseClicked
 
     private void QA4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA4MouseEntered
-       A4.setBackground(Color.decode("#FFFF00"));
-       QA4.setBackground(Color.decode("#FFFF00"));
+        A4.setBackground(Color.decode("#FFFF00"));
+        QA4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QA4MouseEntered
 
     private void QA4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA4MouseExited
@@ -3865,13 +3929,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA4MouseClicked
 
     private void A6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A6MouseEntered
-       A6.setBackground(Color.decode("#FFFF00"));
-       QA6.setBackground(Color.decode("#FFFF00"));
+        A6.setBackground(Color.decode("#FFFF00"));
+        QA6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_A6MouseEntered
 
     private void A6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A6MouseExited
-       A6.setBackground(Color.decode("#000000"));
-       QA6.setBackground(Color.decode("#000000"));
+        A6.setBackground(Color.decode("#000000"));
+        QA6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_A6MouseExited
 
     private void A6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A6MouseClicked
@@ -3898,8 +3962,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A7MouseEntered
 
     private void A7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A7MouseExited
-       A7.setBackground(Color.decode("#FFFFFF"));
-       QA7.setBackground(Color.decode("#FFFFFF"));
+        A7.setBackground(Color.decode("#FFFFFF"));
+        QA7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_A7MouseExited
 
     private void A7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A7MouseClicked
@@ -3907,13 +3971,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A7MouseClicked
 
     private void QA7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA7MouseEntered
-       A7.setBackground(Color.decode("#FFFF00"));
+        A7.setBackground(Color.decode("#FFFF00"));
         QA7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QA7MouseEntered
 
     private void QA7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA7MouseExited
-       A7.setBackground(Color.decode("#FFFFFF"));
-       QA7.setBackground(Color.decode("#FFFFFF"));
+        A7.setBackground(Color.decode("#FFFFFF"));
+        QA7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QA7MouseExited
 
     private void QA7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA7MouseClicked
@@ -3926,7 +3990,7 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A8MouseEntered
 
     private void A8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A8MouseExited
-         A8.setBackground(Color.decode("#000000"));
+        A8.setBackground(Color.decode("#000000"));
         QA8.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_A8MouseExited
 
@@ -3954,8 +4018,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B1MouseEntered
 
     private void B1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseExited
-      B1.setBackground(Color.decode("#000000"));
-      QB1.setBackground(Color.decode("#000000"));
+        B1.setBackground(Color.decode("#000000"));
+        QB1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_B1MouseExited
 
     private void B1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseClicked
@@ -3968,8 +4032,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB1MouseEntered
 
     private void QB1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB1MouseExited
-       B1.setBackground(Color.decode("#000000"));
-      QB1.setBackground(Color.decode("#000000"));
+        B1.setBackground(Color.decode("#000000"));
+        QB1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QB1MouseExited
 
     private void QB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB1MouseClicked
@@ -3977,13 +4041,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB1MouseClicked
 
     private void B2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MouseEntered
-       B2.setBackground(Color.decode("#FFFF00"));
-       QB2.setBackground(Color.decode("#FFFF00"));
+        B2.setBackground(Color.decode("#FFFF00"));
+        QB2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_B2MouseEntered
 
     private void B2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MouseExited
-       B2.setBackground(Color.decode("#FFFFFF"));
-       QB2.setBackground(Color.decode("#FFFFFF"));
+        B2.setBackground(Color.decode("#FFFFFF"));
+        QB2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_B2MouseExited
 
     private void B2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MouseClicked
@@ -3991,13 +4055,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B2MouseClicked
 
     private void QB2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB2MouseEntered
-         B2.setBackground(Color.decode("#FFFF00"));
-       QB2.setBackground(Color.decode("#FFFF00"));
+        B2.setBackground(Color.decode("#FFFF00"));
+        QB2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QB2MouseEntered
 
     private void QB2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB2MouseExited
         B2.setBackground(Color.decode("#FFFFFF"));
-       QB2.setBackground(Color.decode("#FFFFFF"));
+        QB2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QB2MouseExited
 
     private void QB2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB2MouseClicked
@@ -4010,8 +4074,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B3MouseEntered
 
     private void B3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseExited
-       B3.setBackground(Color.decode("#000000"));
-       QB3.setBackground(Color.decode("#000000"));
+        B3.setBackground(Color.decode("#000000"));
+        QB3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_B3MouseExited
 
     private void B3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseClicked
@@ -4019,13 +4083,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B3MouseClicked
 
     private void QB3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB3MouseEntered
-         B3.setBackground(Color.decode("#FFFF00"));
+        B3.setBackground(Color.decode("#FFFF00"));
         QB3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QB3MouseEntered
 
     private void QB3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB3MouseExited
-       B3.setBackground(Color.decode("#000000"));
-       QB3.setBackground(Color.decode("#000000"));
+        B3.setBackground(Color.decode("#000000"));
+        QB3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QB3MouseExited
 
     private void QB3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB3MouseClicked
@@ -4033,13 +4097,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB3MouseClicked
 
     private void B4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B4MouseEntered
-      B4.setBackground(Color.decode("#FFFF00"));
-      QB4.setBackground(Color.decode("#FFFF00"));
+        B4.setBackground(Color.decode("#FFFF00"));
+        QB4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_B4MouseEntered
 
     private void B4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B4MouseExited
-      B4.setBackground(Color.decode("#FFFFFF"));
-      QB4.setBackground(Color.decode("#FFFFFF"));
+        B4.setBackground(Color.decode("#FFFFFF"));
+        QB4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_B4MouseExited
 
     private void B4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B4MouseClicked
@@ -4048,12 +4112,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QB4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB4MouseEntered
         B4.setBackground(Color.decode("#FFFF00"));
-      QB4.setBackground(Color.decode("#FFFF00"));
+        QB4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QB4MouseEntered
 
     private void QB4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB4MouseExited
-       B4.setBackground(Color.decode("#FFFFFF"));
-      QB4.setBackground(Color.decode("#FFFFFF"));
+        B4.setBackground(Color.decode("#FFFFFF"));
+        QB4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QB4MouseExited
 
     private void QB4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB4MouseClicked
@@ -4061,13 +4125,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB4MouseClicked
 
     private void B5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MouseEntered
-       B5.setBackground(Color.decode("#FFFF00"));
-       QB5.setBackground(Color.decode("#FFFF00"));
+        B5.setBackground(Color.decode("#FFFF00"));
+        QB5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_B5MouseEntered
 
     private void B5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MouseExited
-       B5.setBackground(Color.decode("#000000"));
-       QB5.setBackground(Color.decode("#000000"));
+        B5.setBackground(Color.decode("#000000"));
+        QB5.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_B5MouseExited
 
     private void B5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MouseClicked
@@ -4076,12 +4140,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QB5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB5MouseEntered
         B5.setBackground(Color.decode("#FFFF00"));
-       QB5.setBackground(Color.decode("#FFFF00"));
+        QB5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QB5MouseEntered
 
     private void QB5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB5MouseExited
         B5.setBackground(Color.decode("#000000"));
-       QB5.setBackground(Color.decode("#000000"));
+        QB5.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QB5MouseExited
 
     private void QB5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB5MouseClicked
@@ -4094,8 +4158,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B6MouseEntered
 
     private void B6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B6MouseExited
-       B6.setBackground(Color.decode("#FFFFFF"));
-       QB6.setBackground(Color.decode("#FFFFFF"));
+        B6.setBackground(Color.decode("#FFFFFF"));
+        QB6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_B6MouseExited
 
     private void B6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B6MouseClicked
@@ -4103,13 +4167,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B6MouseClicked
 
     private void QB6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB6MouseEntered
-         B6.setBackground(Color.decode("#FFFF00"));
+        B6.setBackground(Color.decode("#FFFF00"));
         QB6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QB6MouseEntered
 
     private void QB6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB6MouseExited
-       B6.setBackground(Color.decode("#FFFFFF"));
-       QB6.setBackground(Color.decode("#FFFFFF"));
+        B6.setBackground(Color.decode("#FFFFFF"));
+        QB6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QB6MouseExited
 
     private void QB6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB6MouseClicked
@@ -4122,8 +4186,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B7MouseEntered
 
     private void B7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B7MouseExited
-       B7.setBackground(Color.decode("#000000"));
-       QB7.setBackground(Color.decode("#000000"));
+        B7.setBackground(Color.decode("#000000"));
+        QB7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_B7MouseExited
 
     private void B7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B7MouseClicked
@@ -4137,7 +4201,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QB7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB7MouseExited
         B7.setBackground(Color.decode("#000000"));
-       QB7.setBackground(Color.decode("#000000"));
+        QB7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QB7MouseExited
 
     private void QB7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB7MouseClicked
@@ -4150,8 +4214,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B8MouseEntered
 
     private void B8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B8MouseExited
-      B8.setBackground(Color.decode("#FFFFFF"));
-      QB8.setBackground(Color.decode("#FFFFFF"));
+        B8.setBackground(Color.decode("#FFFFFF"));
+        QB8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_B8MouseExited
 
     private void B8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B8MouseClicked
@@ -4164,8 +4228,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB8MouseEntered
 
     private void QB8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB8MouseExited
-         B8.setBackground(Color.decode("#FFFFFF"));
-      QB8.setBackground(Color.decode("#FFFFFF"));
+        B8.setBackground(Color.decode("#FFFFFF"));
+        QB8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QB8MouseExited
 
     private void QB8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB8MouseClicked
@@ -4173,8 +4237,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB8MouseClicked
 
     private void C1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseEntered
-      C1.setBackground(Color.decode("#FFFF00"));
-      QC1.setBackground(Color.decode("#FFFF00"));
+        C1.setBackground(Color.decode("#FFFF00"));
+        QC1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C1MouseEntered
 
     private void C1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseExited
@@ -4187,8 +4251,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C1MouseClicked
 
     private void QC1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC1MouseEntered
-      C1.setBackground(Color.decode("#FFFF00"));
-      QC1.setBackground(Color.decode("#FFFF00"));
+        C1.setBackground(Color.decode("#FFFF00"));
+        QC1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC1MouseEntered
 
     private void QC1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC1MouseExited
@@ -4201,8 +4265,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC1MouseClicked
 
     private void C2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseEntered
-      C2.setBackground(Color.decode("#FFFF00"));
-      QC2.setBackground(Color.decode("#FFFF00"));
+        C2.setBackground(Color.decode("#FFFF00"));
+        QC2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C2MouseEntered
 
     private void C2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseExited
@@ -4215,12 +4279,12 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C2MouseClicked
 
     private void QC2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC2MouseEntered
-         C2.setBackground(Color.decode("#FFFF00"));
-      QC2.setBackground(Color.decode("#FFFF00"));
+        C2.setBackground(Color.decode("#FFFF00"));
+        QC2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC2MouseEntered
 
     private void QC2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC2MouseExited
-         C2.setBackground(Color.decode("#000000"));
+        C2.setBackground(Color.decode("#000000"));
         QC2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QC2MouseExited
 
@@ -4229,13 +4293,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC2MouseClicked
 
     private void C3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C3MouseEntered
-     C3.setBackground(Color.decode("#FFFF00"));
-     QC3.setBackground(Color.decode("#FFFF00"));
+        C3.setBackground(Color.decode("#FFFF00"));
+        QC3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C3MouseEntered
 
     private void C3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C3MouseExited
-     C3.setBackground(Color.decode("#FFFFFF"));
-     QC3.setBackground(Color.decode("#FFFFFF"));
+        C3.setBackground(Color.decode("#FFFFFF"));
+        QC3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_C3MouseExited
 
     private void C3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C3MouseClicked
@@ -4243,13 +4307,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C3MouseClicked
 
     private void QC3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC3MouseEntered
-       C3.setBackground(Color.decode("#FFFF00"));
-     QC3.setBackground(Color.decode("#FFFF00"));
+        C3.setBackground(Color.decode("#FFFF00"));
+        QC3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC3MouseEntered
 
     private void QC3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC3MouseExited
         C3.setBackground(Color.decode("#FFFFFF"));
-     QC3.setBackground(Color.decode("#FFFFFF"));
+        QC3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QC3MouseExited
 
     private void QC3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC3MouseClicked
@@ -4257,13 +4321,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC3MouseClicked
 
     private void C4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseEntered
-      C4.setBackground(Color.decode("#FFFF00"));
-      QC4.setBackground(Color.decode("#FFFF00"));
+        C4.setBackground(Color.decode("#FFFF00"));
+        QC4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C4MouseEntered
 
     private void C4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseExited
-     C4.setBackground(Color.decode("#000000"));
-     QC4.setBackground(Color.decode("#000000"));
+        C4.setBackground(Color.decode("#000000"));
+        QC4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_C4MouseExited
 
     private void C4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseClicked
@@ -4271,13 +4335,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C4MouseClicked
 
     private void QC4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC4MouseEntered
-       C4.setBackground(Color.decode("#FFFF00"));
-      QC4.setBackground(Color.decode("#FFFF00"));
+        C4.setBackground(Color.decode("#FFFF00"));
+        QC4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC4MouseEntered
 
     private void QC4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC4MouseExited
-         C4.setBackground(Color.decode("#000000"));
-     QC4.setBackground(Color.decode("#000000"));
+        C4.setBackground(Color.decode("#000000"));
+        QC4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QC4MouseExited
 
     private void QC4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC4MouseClicked
@@ -4290,8 +4354,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C5MouseEntered
 
     private void C5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C5MouseExited
-       C5.setBackground(Color.decode("#FFFFFF"));
-       QC5.setBackground(Color.decode("#FFFFFF"));
+        C5.setBackground(Color.decode("#FFFFFF"));
+        QC5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_C5MouseExited
 
     private void C5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C5MouseClicked
@@ -4305,7 +4369,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QC5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC5MouseExited
         C5.setBackground(Color.decode("#FFFFFF"));
-       QC5.setBackground(Color.decode("#FFFFFF"));
+        QC5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QC5MouseExited
 
     private void QC5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC5MouseClicked
@@ -4313,13 +4377,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC5MouseClicked
 
     private void C6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C6MouseEntered
-       C6.setBackground(Color.decode("#FFFF00"));
-       QC6.setBackground(Color.decode("#FFFF00"));
+        C6.setBackground(Color.decode("#FFFF00"));
+        QC6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C6MouseEntered
 
     private void C6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C6MouseExited
-       C6.setBackground(Color.decode(("000000")));
-       QC6.setBackground(Color.decode("#000000"));
+        C6.setBackground(Color.decode(("000000")));
+        QC6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_C6MouseExited
 
     private void C6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C6MouseClicked
@@ -4327,13 +4391,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C6MouseClicked
 
     private void QC6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC6MouseEntered
-       C6.setBackground(Color.decode("#FFFF00"));
-       QC6.setBackground(Color.decode("#FFFF00"));
+        C6.setBackground(Color.decode("#FFFF00"));
+        QC6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC6MouseEntered
 
     private void QC6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC6MouseExited
-       C6.setBackground(Color.decode(("000000")));
-       QC6.setBackground(Color.decode("#000000"));
+        C6.setBackground(Color.decode(("000000")));
+        QC6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QC6MouseExited
 
     private void QC6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC6MouseClicked
@@ -4341,13 +4405,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC6MouseClicked
 
     private void C7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C7MouseEntered
-       C7.setBackground(Color.decode("#FFFF00"));
-       QC7.setBackground(Color.decode("#FFFF00"));
+        C7.setBackground(Color.decode("#FFFF00"));
+        QC7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C7MouseEntered
 
     private void C7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C7MouseExited
-       C7.setBackground(Color.decode("#FFFFFF"));
-       QC7.setBackground(Color.decode("#FFFFFF"));
+        C7.setBackground(Color.decode("#FFFFFF"));
+        QC7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_C7MouseExited
 
     private void C7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C7MouseClicked
@@ -4355,13 +4419,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C7MouseClicked
 
     private void QC7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC7MouseEntered
-       C7.setBackground(Color.decode("#FFFF00"));
-       QC7.setBackground(Color.decode("#FFFF00"));
+        C7.setBackground(Color.decode("#FFFF00"));
+        QC7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC7MouseEntered
 
     private void QC7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC7MouseExited
-       C7.setBackground(Color.decode("#FFFFFF"));
-       QC7.setBackground(Color.decode("#FFFFFF"));
+        C7.setBackground(Color.decode("#FFFFFF"));
+        QC7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QC7MouseExited
 
     private void QC7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC7MouseClicked
@@ -4369,13 +4433,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC7MouseClicked
 
     private void C8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C8MouseEntered
-       C8.setBackground(Color.decode("#FFFF00"));
-       QC8.setBackground(Color.decode("#FFFF00"));
+        C8.setBackground(Color.decode("#FFFF00"));
+        QC8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_C8MouseEntered
 
     private void C8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C8MouseExited
-     C8.setBackground(Color.decode("#000000"));
-     QC8.setBackground(Color.decode("000000"));
+        C8.setBackground(Color.decode("#000000"));
+        QC8.setBackground(Color.decode("000000"));
     }//GEN-LAST:event_C8MouseExited
 
     private void C8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C8MouseClicked
@@ -4383,13 +4447,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C8MouseClicked
 
     private void QC8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC8MouseEntered
-       C8.setBackground(Color.decode("#FFFF00"));
-       QC8.setBackground(Color.decode("#FFFF00"));
+        C8.setBackground(Color.decode("#FFFF00"));
+        QC8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QC8MouseEntered
 
     private void QC8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC8MouseExited
         C8.setBackground(Color.decode("#000000"));
-     QC8.setBackground(Color.decode("000000"));
+        QC8.setBackground(Color.decode("000000"));
     }//GEN-LAST:event_QC8MouseExited
 
     private void QC8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC8MouseClicked
@@ -4402,8 +4466,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D1MouseEntered
 
     private void D1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D1MouseExited
-      D1.setBackground(Color.decode("#000000"));
-      QD1.setBackground(Color.decode("#000000"));
+        D1.setBackground(Color.decode("#000000"));
+        QD1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_D1MouseExited
 
     private void D1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D1MouseClicked
@@ -4411,13 +4475,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D1MouseClicked
 
     private void QD1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD1MouseEntered
-       D1.setBackground(Color.decode("#FFFF00"));
+        D1.setBackground(Color.decode("#FFFF00"));
         QD1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD1MouseEntered
 
     private void QD1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD1MouseExited
-       D1.setBackground(Color.decode("#000000"));
-      QD1.setBackground(Color.decode("#000000"));
+        D1.setBackground(Color.decode("#000000"));
+        QD1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QD1MouseExited
 
     private void QD1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD1MouseClicked
@@ -4425,13 +4489,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD1MouseClicked
 
     private void D2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D2MouseEntered
-       D2.setBackground(Color.decode("#FFFF00"));
-       QD2.setBackground(Color.decode("#FFFF00"));
+        D2.setBackground(Color.decode("#FFFF00"));
+        QD2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_D2MouseEntered
 
     private void D2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D2MouseExited
-       D2.setBackground(Color.decode("#FFFFFF"));
-       QD2.setBackground(Color.decode("#FFFFFF"));
+        D2.setBackground(Color.decode("#FFFFFF"));
+        QD2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_D2MouseExited
 
     private void D2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D2MouseClicked
@@ -4439,13 +4503,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D2MouseClicked
 
     private void QD2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD2MouseEntered
-       D2.setBackground(Color.decode("#FFFF00"));
-       QD2.setBackground(Color.decode("#FFFF00"));
+        D2.setBackground(Color.decode("#FFFF00"));
+        QD2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD2MouseEntered
 
     private void QD2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD2MouseExited
         D2.setBackground(Color.decode("#FFFFFF"));
-       QD2.setBackground(Color.decode("#FFFFFF"));
+        QD2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QD2MouseExited
 
     private void QD2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD2MouseClicked
@@ -4453,13 +4517,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD2MouseClicked
 
     private void D3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D3MouseEntered
-     D3.setBackground(Color.decode("#FFFF00"));
-     QD3.setBackground(Color.decode("#FFFF00"));
+        D3.setBackground(Color.decode("#FFFF00"));
+        QD3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_D3MouseEntered
 
     private void D3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D3MouseExited
-       D3.setBackground(Color.decode("#000000"));
-       QD3.setBackground(Color.decode("#000000"));
+        D3.setBackground(Color.decode("#000000"));
+        QD3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_D3MouseExited
 
     private void D3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D3MouseClicked
@@ -4468,12 +4532,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QD3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD3MouseEntered
         D3.setBackground(Color.decode("#FFFF00"));
-     QD3.setBackground(Color.decode("#FFFF00"));
+        QD3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD3MouseEntered
 
     private void QD3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD3MouseExited
-       D3.setBackground(Color.decode("#000000"));
-       QD3.setBackground(Color.decode("#000000"));
+        D3.setBackground(Color.decode("#000000"));
+        QD3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QD3MouseExited
 
     private void QD3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD3MouseClicked
@@ -4486,8 +4550,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D4MouseEntered
 
     private void D4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D4MouseExited
-       D4.setBackground(Color.decode("#FFFFFF"));
-       QD4.setBackground(Color.decode("#FFFFFF"));
+        D4.setBackground(Color.decode("#FFFFFF"));
+        QD4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_D4MouseExited
 
     private void D4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D4MouseClicked
@@ -4495,13 +4559,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D4MouseClicked
 
     private void QD4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD4MouseEntered
-       D4.setBackground(Color.decode("#FFFF00"));
+        D4.setBackground(Color.decode("#FFFF00"));
         QD4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD4MouseEntered
 
     private void QD4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD4MouseExited
         D4.setBackground(Color.decode("#FFFFFF"));
-       QD4.setBackground(Color.decode("#FFFFFF"));
+        QD4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QD4MouseExited
 
     private void QD4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD4MouseClicked
@@ -4509,13 +4573,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD4MouseClicked
 
     private void D5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D5MouseEntered
-      D5.setBackground(Color.decode("#FFFF00"));
-      QD5.setBackground(Color.decode("#FFFF00"));
+        D5.setBackground(Color.decode("#FFFF00"));
+        QD5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_D5MouseEntered
 
     private void D5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D5MouseExited
-       D5.setBackground(Color.decode("#000000"));
-       QD5.setBackground(Color.decode("#000000"));
+        D5.setBackground(Color.decode("#000000"));
+        QD5.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_D5MouseExited
 
     private void D5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D5MouseClicked
@@ -4523,13 +4587,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D5MouseClicked
 
     private void QD5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD5MouseEntered
-      D5.setBackground(Color.decode("#FFFF00"));
-      QD5.setBackground(Color.decode("#FFFF00"));
+        D5.setBackground(Color.decode("#FFFF00"));
+        QD5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD5MouseEntered
 
     private void QD5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD5MouseExited
-       D5.setBackground(Color.decode("#000000"));
-       QD5.setBackground(Color.decode("#000000"));
+        D5.setBackground(Color.decode("#000000"));
+        QD5.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QD5MouseExited
 
     private void QD5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD5MouseClicked
@@ -4537,13 +4601,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD5MouseClicked
 
     private void D6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D6MouseEntered
-       D6.setBackground(Color.decode("#FFFF00"));
-       QD6.setBackground(Color.decode("#FFFF00"));
+        D6.setBackground(Color.decode("#FFFF00"));
+        QD6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_D6MouseEntered
 
     private void D6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D6MouseExited
-      D6.setBackground(Color.decode("#FFFFFF"));
-      QD6.setBackground(Color.decode("#FFFFFF"));
+        D6.setBackground(Color.decode("#FFFFFF"));
+        QD6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_D6MouseExited
 
     private void D6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D6MouseClicked
@@ -4551,13 +4615,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D6MouseClicked
 
     private void QD6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD6MouseEntered
-      D6.setBackground(Color.decode("#FFFF00"));
-       QD6.setBackground(Color.decode("#FFFF00"));
+        D6.setBackground(Color.decode("#FFFF00"));
+        QD6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD6MouseEntered
 
     private void QD6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD6MouseExited
         D6.setBackground(Color.decode("#FFFFFF"));
-      QD6.setBackground(Color.decode("#FFFFFF"));
+        QD6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QD6MouseExited
 
     private void QD6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD6MouseClicked
@@ -4565,13 +4629,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD6MouseClicked
 
     private void D7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D7MouseEntered
-     D7.setBackground(Color.decode("#FFFF00"));
-     QD7.setBackground(Color.decode("#FFFF00"));
+        D7.setBackground(Color.decode("#FFFF00"));
+        QD7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_D7MouseEntered
 
     private void D7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D7MouseExited
-     D7.setBackground(Color.decode("#000000"));
-     QD7.setBackground(Color.decode("#000000"));
+        D7.setBackground(Color.decode("#000000"));
+        QD7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_D7MouseExited
 
     private void D7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D7MouseClicked
@@ -4579,13 +4643,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D7MouseClicked
 
     private void QD7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD7MouseEntered
-      D7.setBackground(Color.decode("#FFFF00"));
-     QD7.setBackground(Color.decode("#FFFF00"));
+        D7.setBackground(Color.decode("#FFFF00"));
+        QD7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD7MouseEntered
 
     private void QD7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD7MouseExited
         D7.setBackground(Color.decode("#000000"));
-     QD7.setBackground(Color.decode("#000000"));
+        QD7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QD7MouseExited
 
     private void QD7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD7MouseClicked
@@ -4598,8 +4662,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D8MouseEntered
 
     private void D8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D8MouseExited
-       D8.setBackground(Color.decode("#FFFFFF"));
-       QD8.setBackground(Color.decode("#FFFFFF"));
+        D8.setBackground(Color.decode("#FFFFFF"));
+        QD8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_D8MouseExited
 
     private void D8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D8MouseClicked
@@ -4607,13 +4671,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D8MouseClicked
 
     private void QD8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD8MouseEntered
-      D8.setBackground(Color.decode("#FFFF00"));
+        D8.setBackground(Color.decode("#FFFF00"));
         QD8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QD8MouseEntered
 
     private void QD8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD8MouseExited
-       D8.setBackground(Color.decode("#FFFFFF"));
-       QD8.setBackground(Color.decode("#FFFFFF"));
+        D8.setBackground(Color.decode("#FFFFFF"));
+        QD8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QD8MouseExited
 
     private void QD8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD8MouseClicked
@@ -4626,8 +4690,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E1MouseEntered
 
     private void E1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E1MouseExited
-       E1.setBackground(Color.decode("#FFFFFF"));
-       QE1.setBackground(Color.decode("#FFFFFF"));
+        E1.setBackground(Color.decode("#FFFFFF"));
+        QE1.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_E1MouseExited
 
     private void E1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E1MouseClicked
@@ -4635,13 +4699,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E1MouseClicked
 
     private void QE1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE1MouseEntered
-       E1.setBackground(Color.decode("#FFFF00"));
+        E1.setBackground(Color.decode("#FFFF00"));
         QE1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE1MouseEntered
 
     private void QE1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE1MouseExited
-       E1.setBackground(Color.decode("#FFFFFF"));
-       QE1.setBackground(Color.decode("#FFFFFF"));
+        E1.setBackground(Color.decode("#FFFFFF"));
+        QE1.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QE1MouseExited
 
     private void QE1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE1MouseClicked
@@ -4649,13 +4713,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE1MouseClicked
 
     private void E2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E2MouseEntered
-       E2.setBackground(Color.decode("#FFFF00"));
-       QE2.setBackground(Color.decode("#FFFF00"));
+        E2.setBackground(Color.decode("#FFFF00"));
+        QE2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E2MouseEntered
 
     private void E2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E2MouseExited
-       E2.setBackground(Color.decode("#000000"));
-       QE2.setBackground(Color.decode("#000000"));
+        E2.setBackground(Color.decode("#000000"));
+        QE2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_E2MouseExited
 
     private void E2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E2MouseClicked
@@ -4664,12 +4728,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QE2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE2MouseEntered
         E2.setBackground(Color.decode("#FFFF00"));
-       QE2.setBackground(Color.decode("#FFFF00"));
+        QE2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE2MouseEntered
 
     private void QE2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE2MouseExited
-      E2.setBackground(Color.decode("#000000"));
-       QE2.setBackground(Color.decode("#000000"));
+        E2.setBackground(Color.decode("#000000"));
+        QE2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QE2MouseExited
 
     private void QE2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE2MouseClicked
@@ -4677,13 +4741,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE2MouseClicked
 
     private void E3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E3MouseEntered
-     E3.setBackground(Color.decode("#FFFF00"));
-     QE3.setBackground(Color.decode("#FFFF00"));
+        E3.setBackground(Color.decode("#FFFF00"));
+        QE3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E3MouseEntered
 
     private void E3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E3MouseExited
-     E3.setBackground(Color.decode("#FFFFFF"));
-     QE3.setBackground(Color.decode("#FFFFFF"));
+        E3.setBackground(Color.decode("#FFFFFF"));
+        QE3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_E3MouseExited
 
     private void E3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E3MouseClicked
@@ -4692,12 +4756,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QE3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE3MouseEntered
         E3.setBackground(Color.decode("#FFFF00"));
-     QE3.setBackground(Color.decode("#FFFF00"));
+        QE3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE3MouseEntered
 
     private void QE3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE3MouseExited
-       E3.setBackground(Color.decode("#FFFFFF"));
-     QE3.setBackground(Color.decode("#FFFFFF"));
+        E3.setBackground(Color.decode("#FFFFFF"));
+        QE3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QE3MouseExited
 
     private void QE3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE3MouseClicked
@@ -4710,8 +4774,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E4MouseEntered
 
     private void E4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E4MouseExited
-       E4.setBackground(Color.decode("#000000"));
-       QE4.setBackground(Color.decode("#000000"));
+        E4.setBackground(Color.decode("#000000"));
+        QE4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_E4MouseExited
 
     private void E4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E4MouseClicked
@@ -4725,7 +4789,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QE4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE4MouseExited
         E4.setBackground(Color.decode("#000000"));
-       QE4.setBackground(Color.decode("#000000"));
+        QE4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QE4MouseExited
 
     private void QE4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE4MouseClicked
@@ -4733,13 +4797,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE4MouseClicked
 
     private void E5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E5MouseEntered
-      E5.setBackground(Color.decode("#FFFF00"));
-      QE5.setBackground(Color.decode("#FFFF00"));
+        E5.setBackground(Color.decode("#FFFF00"));
+        QE5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E5MouseEntered
 
     private void E5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E5MouseExited
-      E5.setBackground(Color.decode("#FFFFFF"));
-      QE5.setBackground(Color.decode("#FFFFFF"));
+        E5.setBackground(Color.decode("#FFFFFF"));
+        QE5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_E5MouseExited
 
     private void E5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E5MouseClicked
@@ -4747,13 +4811,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E5MouseClicked
 
     private void QE5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE5MouseEntered
-       E5.setBackground(Color.decode("#FFFF00"));
-      QE5.setBackground(Color.decode("#FFFF00"));
+        E5.setBackground(Color.decode("#FFFF00"));
+        QE5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE5MouseEntered
 
     private void QE5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE5MouseExited
-       E5.setBackground(Color.decode("#FFFFFF"));
-      QE5.setBackground(Color.decode("#FFFFFF"));
+        E5.setBackground(Color.decode("#FFFFFF"));
+        QE5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QE5MouseExited
 
     private void QE5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE5MouseClicked
@@ -4761,13 +4825,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE5MouseClicked
 
     private void E6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E6MouseEntered
-       E6.setBackground(Color.decode("#FFFF00"));
-       QE6.setBackground(Color.decode("#FFFF00"));
+        E6.setBackground(Color.decode("#FFFF00"));
+        QE6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E6MouseEntered
 
     private void E6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E6MouseExited
-       E6.setBackground(Color.decode("#000000"));
-       QE6.setBackground(Color.decode("#000000"));
+        E6.setBackground(Color.decode("#000000"));
+        QE6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_E6MouseExited
 
     private void E6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E6MouseClicked
@@ -4776,12 +4840,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QE6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE6MouseEntered
         E6.setBackground(Color.decode("#FFFF00"));
-       QE6.setBackground(Color.decode("#FFFF00"));
+        QE6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE6MouseEntered
 
     private void QE6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE6MouseExited
-       E6.setBackground(Color.decode("#000000"));
-       QE6.setBackground(Color.decode("#000000"));
+        E6.setBackground(Color.decode("#000000"));
+        QE6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QE6MouseExited
 
     private void QE6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE6MouseClicked
@@ -4789,13 +4853,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE6MouseClicked
 
     private void E7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E7MouseEntered
-      E7.setBackground(Color.decode("#FFFF00"));
-      QE7.setBackground(Color.decode("#FFFF00"));
+        E7.setBackground(Color.decode("#FFFF00"));
+        QE7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E7MouseEntered
 
     private void E7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E7MouseExited
-      E7.setBackground(Color.decode("#FFFFFF"));
-      QE7.setBackground(Color.decode("#FFFFFF"));
+        E7.setBackground(Color.decode("#FFFFFF"));
+        QE7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_E7MouseExited
 
     private void E7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E7MouseClicked
@@ -4803,13 +4867,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E7MouseClicked
 
     private void QE7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE7MouseEntered
-       E7.setBackground(Color.decode("#FFFF00"));
-      QE7.setBackground(Color.decode("#FFFF00"));
+        E7.setBackground(Color.decode("#FFFF00"));
+        QE7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE7MouseEntered
 
     private void QE7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE7MouseExited
         E7.setBackground(Color.decode("#FFFFFF"));
-      QE7.setBackground(Color.decode("#FFFFFF"));
+        QE7.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QE7MouseExited
 
     private void QE7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE7MouseClicked
@@ -4817,13 +4881,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE7MouseClicked
 
     private void E8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E8MouseEntered
-     E8.setBackground(Color.decode("#FFFF00"));
-     QE8.setBackground(Color.decode("#FFFF00"));
+        E8.setBackground(Color.decode("#FFFF00"));
+        QE8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_E8MouseEntered
 
     private void E8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E8MouseExited
-      E8.setBackground(Color.decode("#000000"));
-      QE8.setBackground(Color.decode("#000000"));
+        E8.setBackground(Color.decode("#000000"));
+        QE8.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_E8MouseExited
 
     private void E8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E8MouseClicked
@@ -4831,13 +4895,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E8MouseClicked
 
     private void QE8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE8MouseEntered
-     E8.setBackground(Color.decode("#FFFF00"));
-     QE8.setBackground(Color.decode("#FFFF00"));
+        E8.setBackground(Color.decode("#FFFF00"));
+        QE8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QE8MouseEntered
 
     private void QE8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE8MouseExited
-       E8.setBackground(Color.decode("#000000"));
-      QE8.setBackground(Color.decode("#000000"));
+        E8.setBackground(Color.decode("#000000"));
+        QE8.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QE8MouseExited
 
     private void QE8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE8MouseClicked
@@ -4845,13 +4909,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE8MouseClicked
 
     private void F1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F1MouseEntered
-      F1.setBackground(Color.decode("#FFFF00"));
-      QF1.setBackground(Color.decode("#FFFF00"));
+        F1.setBackground(Color.decode("#FFFF00"));
+        QF1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F1MouseEntered
 
     private void F1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F1MouseExited
-     F1.setBackground(Color.decode("#000000"));
-     QF1.setBackground(Color.decode("#000000"));
+        F1.setBackground(Color.decode("#000000"));
+        QF1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_F1MouseExited
 
     private void F1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F1MouseClicked
@@ -4859,13 +4923,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F1MouseClicked
 
     private void QF1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF1MouseEntered
-      F1.setBackground(Color.decode("#FFFF00"));
-      QF1.setBackground(Color.decode("#FFFF00"));
+        F1.setBackground(Color.decode("#FFFF00"));
+        QF1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF1MouseEntered
 
     private void QF1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF1MouseExited
-       F1.setBackground(Color.decode("#000000"));
-     QF1.setBackground(Color.decode("#000000"));
+        F1.setBackground(Color.decode("#000000"));
+        QF1.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QF1MouseExited
 
     private void QF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF1MouseClicked
@@ -4873,13 +4937,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF1MouseClicked
 
     private void F2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F2MouseEntered
-      F2.setBackground(Color.decode("#FFFF00"));
-      QF2.setBackground(Color.decode("#FFFF00"));
+        F2.setBackground(Color.decode("#FFFF00"));
+        QF2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F2MouseEntered
 
     private void F2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F2MouseExited
-     F2.setBackground(Color.decode("#FFFFFF"));
-     QF2.setBackground(Color.decode("#FFFFFF"));
+        F2.setBackground(Color.decode("#FFFFFF"));
+        QF2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_F2MouseExited
 
     private void F2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F2MouseClicked
@@ -4887,13 +4951,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F2MouseClicked
 
     private void QF2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF2MouseEntered
-       F2.setBackground(Color.decode("#FFFF00"));
-      QF2.setBackground(Color.decode("#FFFF00"));
+        F2.setBackground(Color.decode("#FFFF00"));
+        QF2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF2MouseEntered
 
     private void QF2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF2MouseExited
-       F2.setBackground(Color.decode("#FFFFFF"));
-     QF2.setBackground(Color.decode("#FFFFFF"));
+        F2.setBackground(Color.decode("#FFFFFF"));
+        QF2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QF2MouseExited
 
     private void QF2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF2MouseClicked
@@ -4901,13 +4965,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF2MouseClicked
 
     private void F3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F3MouseEntered
-    F3.setBackground(Color.decode("#FFFF00"));
-    QF3.setBackground(Color.decode("#FFFF00"));
+        F3.setBackground(Color.decode("#FFFF00"));
+        QF3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F3MouseEntered
 
     private void F3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F3MouseExited
-      F3.setBackground(Color.decode("#000000"));
-      QF3.setBackground(Color.decode("#000000"));
+        F3.setBackground(Color.decode("#000000"));
+        QF3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_F3MouseExited
 
     private void F3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F3MouseClicked
@@ -4915,13 +4979,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F3MouseClicked
 
     private void QF3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF3MouseEntered
-      F3.setBackground(Color.decode("#FFFF00"));
-    QF3.setBackground(Color.decode("#FFFF00"));
+        F3.setBackground(Color.decode("#FFFF00"));
+        QF3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF3MouseEntered
 
     private void QF3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF3MouseExited
         F3.setBackground(Color.decode("#000000"));
-      QF3.setBackground(Color.decode("#000000"));
+        QF3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QF3MouseExited
 
     private void QF3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF3MouseClicked
@@ -4929,13 +4993,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF3MouseClicked
 
     private void F4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F4MouseEntered
-       F4.setBackground(Color.decode("#FFFF00"));
-       QF4.setBackground(Color.decode("#FFFF00"));
+        F4.setBackground(Color.decode("#FFFF00"));
+        QF4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F4MouseEntered
 
     private void F4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F4MouseExited
-       F4.setBackground(Color.decode("#FFFFFF"));
-       QF4.setBackground(Color.decode("#FFFFFF"));
+        F4.setBackground(Color.decode("#FFFFFF"));
+        QF4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_F4MouseExited
 
     private void F4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F4MouseClicked
@@ -4943,13 +5007,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F4MouseClicked
 
     private void QF4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF4MouseEntered
-       F4.setBackground(Color.decode("#FFFF00"));
-       QF4.setBackground(Color.decode("#FFFF00"));
+        F4.setBackground(Color.decode("#FFFF00"));
+        QF4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF4MouseEntered
 
     private void QF4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF4MouseExited
-         F4.setBackground(Color.decode("#FFFFFF"));
-       QF4.setBackground(Color.decode("#FFFFFF"));
+        F4.setBackground(Color.decode("#FFFFFF"));
+        QF4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QF4MouseExited
 
     private void QF4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF4MouseClicked
@@ -4957,8 +5021,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF4MouseClicked
 
     private void F5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F5MouseEntered
-     F5.setBackground(Color.decode("#FFFF00"));
-     QF5.setBackground(Color.decode("#FFFF00"));
+        F5.setBackground(Color.decode("#FFFF00"));
+        QF5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F5MouseEntered
 
     private void F5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F5MouseExited
@@ -4972,11 +5036,11 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QF5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF5MouseEntered
         F5.setBackground(Color.decode("#FFFF00"));
-     QF5.setBackground(Color.decode("#FFFF00"));
+        QF5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF5MouseEntered
 
     private void QF5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF5MouseExited
-      F5.setBackground(Color.decode("#000000"));
+        F5.setBackground(Color.decode("#000000"));
         QF5.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QF5MouseExited
 
@@ -4985,8 +5049,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF5MouseClicked
 
     private void F6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F6MouseEntered
-       F6.setBackground(Color.decode("#FFFF00"));
-       QF6.setBackground(Color.decode("#FFFF00"));
+        F6.setBackground(Color.decode("#FFFF00"));
+        QF6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F6MouseEntered
 
     private void F6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F6MouseExited
@@ -4999,12 +5063,12 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F6MouseClicked
 
     private void QF6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF6MouseEntered
-       F6.setBackground(Color.decode("#FFFF00"));
-       QF6.setBackground(Color.decode("#FFFF00"));
+        F6.setBackground(Color.decode("#FFFF00"));
+        QF6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF6MouseEntered
 
     private void QF6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF6MouseExited
-       F6.setBackground(Color.decode("#FFFFFF"));
+        F6.setBackground(Color.decode("#FFFFFF"));
         QF6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QF6MouseExited
 
@@ -5013,13 +5077,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF6MouseClicked
 
     private void F7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F7MouseEntered
-      F7.setBackground(Color.decode("#FFFF00"));
-      QF7.setBackground(Color.decode("#FFFF00"));
+        F7.setBackground(Color.decode("#FFFF00"));
+        QF7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F7MouseEntered
 
     private void F7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F7MouseExited
-      F7.setBackground(Color.decode("#000000"));
-      QF7.setBackground(Color.decode("#000000"));
+        F7.setBackground(Color.decode("#000000"));
+        QF7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_F7MouseExited
 
     private void F7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F7MouseClicked
@@ -5028,12 +5092,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QF7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF7MouseEntered
         F7.setBackground(Color.decode("#FFFF00"));
-      QF7.setBackground(Color.decode("#FFFF00"));
+        QF7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF7MouseEntered
 
     private void QF7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF7MouseExited
         F7.setBackground(Color.decode("#000000"));
-      QF7.setBackground(Color.decode("#000000"));
+        QF7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QF7MouseExited
 
     private void QF7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF7MouseClicked
@@ -5041,13 +5105,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF7MouseClicked
 
     private void F8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F8MouseEntered
-       F8.setBackground(Color.decode("#FFFF00"));
-       QF8.setBackground(Color.decode("#FFFF00"));
+        F8.setBackground(Color.decode("#FFFF00"));
+        QF8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_F8MouseEntered
 
     private void F8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F8MouseExited
-       F8.setBackground(Color.decode("#FFFFFF"));
-       QF8.setBackground(Color.decode("#FFFFFF"));
+        F8.setBackground(Color.decode("#FFFFFF"));
+        QF8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_F8MouseExited
 
     private void F8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F8MouseClicked
@@ -5056,12 +5120,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QF8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF8MouseEntered
         F8.setBackground(Color.decode("#FFFF00"));
-       QF8.setBackground(Color.decode("#FFFF00"));
+        QF8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QF8MouseEntered
 
     private void QF8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF8MouseExited
-       F8.setBackground(Color.decode("#FFFFFF"));
-       QF8.setBackground(Color.decode("#FFFFFF"));
+        F8.setBackground(Color.decode("#FFFFFF"));
+        QF8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QF8MouseExited
 
     private void QF8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF8MouseClicked
@@ -5069,13 +5133,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF8MouseClicked
 
     private void G1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G1MouseEntered
-      G1.setBackground(Color.decode("#FFFF00"));
-      QG1.setBackground(Color.decode("#FFFF00"));
+        G1.setBackground(Color.decode("#FFFF00"));
+        QG1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G1MouseEntered
 
     private void G1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G1MouseExited
-     G1.setBackground(Color.decode("#FFFFFF"));
-     QG1.setBackground(Color.decode("#FFFFFF"));
+        G1.setBackground(Color.decode("#FFFFFF"));
+        QG1.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_G1MouseExited
 
     private void G1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G1MouseClicked
@@ -5083,13 +5147,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G1MouseClicked
 
     private void QG1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG1MouseEntered
-       G1.setBackground(Color.decode("#FFFF00"));
-      QG1.setBackground(Color.decode("#FFFF00"));
+        G1.setBackground(Color.decode("#FFFF00"));
+        QG1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG1MouseEntered
 
     private void QG1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG1MouseExited
-       G1.setBackground(Color.decode("#FFFFFF"));
-     QG1.setBackground(Color.decode("#FFFFFF"));
+        G1.setBackground(Color.decode("#FFFFFF"));
+        QG1.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QG1MouseExited
 
     private void QG1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG1MouseClicked
@@ -5097,13 +5161,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG1MouseClicked
 
     private void G2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2MouseEntered
-      G2.setBackground(Color.decode("#FFFF00"));
-      QG2.setBackground(Color.decode("#FFFF00"));
+        G2.setBackground(Color.decode("#FFFF00"));
+        QG2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G2MouseEntered
 
     private void G2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2MouseExited
-       G2.setBackground(Color.decode("#000000"));
-       QG2.setBackground(Color.decode("#000000"));
+        G2.setBackground(Color.decode("#000000"));
+        QG2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_G2MouseExited
 
     private void G2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2MouseClicked
@@ -5112,12 +5176,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QG2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG2MouseEntered
         G2.setBackground(Color.decode("#FFFF00"));
-      QG2.setBackground(Color.decode("#FFFF00"));
+        QG2.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG2MouseEntered
 
     private void QG2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG2MouseExited
         G2.setBackground(Color.decode("#000000"));
-       QG2.setBackground(Color.decode("#000000"));
+        QG2.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QG2MouseExited
 
     private void QG2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG2MouseClicked
@@ -5125,13 +5189,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG2MouseClicked
 
     private void G3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3MouseEntered
-       G3.setBackground(Color.decode("#FFFF00"));
-       QG3.setBackground(Color.decode("#FFFF00"));
+        G3.setBackground(Color.decode("#FFFF00"));
+        QG3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G3MouseEntered
 
     private void G3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3MouseExited
-    G3.setBackground(Color.decode("#FFFFFF"));
-    QG3.setBackground(Color.decode("#FFFFFF"));
+        G3.setBackground(Color.decode("#FFFFFF"));
+        QG3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_G3MouseExited
 
     private void G3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G3MouseClicked
@@ -5139,13 +5203,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G3MouseClicked
 
     private void QG3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG3MouseEntered
-         G3.setBackground(Color.decode("#FFFF00"));
-       QG3.setBackground(Color.decode("#FFFF00"));
+        G3.setBackground(Color.decode("#FFFF00"));
+        QG3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG3MouseEntered
 
     private void QG3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG3MouseExited
         G3.setBackground(Color.decode("#FFFFFF"));
-    QG3.setBackground(Color.decode("#FFFFFF"));
+        QG3.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QG3MouseExited
 
     private void QG3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG3MouseClicked
@@ -5153,13 +5217,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG3MouseClicked
 
     private void G4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G4MouseEntered
-       G4.setBackground(Color.decode("#FFFF00"));
-       QG4.setBackground(Color.decode("#FFFF00"));
+        G4.setBackground(Color.decode("#FFFF00"));
+        QG4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G4MouseEntered
 
     private void G4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G4MouseExited
-       G4.setBackground(Color.decode("#000000"));
-       QG4.setBackground(Color.decode("#000000"));
+        G4.setBackground(Color.decode("#000000"));
+        QG4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_G4MouseExited
 
     private void G4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G4MouseClicked
@@ -5167,13 +5231,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G4MouseClicked
 
     private void QG4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG4MouseEntered
-         G4.setBackground(Color.decode("#FFFF00"));
-       QG4.setBackground(Color.decode("#FFFF00"));
+        G4.setBackground(Color.decode("#FFFF00"));
+        QG4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG4MouseEntered
 
     private void QG4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG4MouseExited
-         G4.setBackground(Color.decode("#000000"));
-       QG4.setBackground(Color.decode("#000000"));
+        G4.setBackground(Color.decode("#000000"));
+        QG4.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QG4MouseExited
 
     private void QG4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG4MouseClicked
@@ -5181,13 +5245,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG4MouseClicked
 
     private void G5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G5MouseEntered
-       G5.setBackground(Color.decode("#FFFF00"));
-       QG5.setBackground(Color.decode("#FFFF00"));
+        G5.setBackground(Color.decode("#FFFF00"));
+        QG5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G5MouseEntered
 
     private void G5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G5MouseExited
-       G5.setBackground(Color.decode("#FFFFFF"));
-       QG5.setBackground(Color.decode("#FFFFFF"));
+        G5.setBackground(Color.decode("#FFFFFF"));
+        QG5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_G5MouseExited
 
     private void G5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G5MouseClicked
@@ -5196,12 +5260,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QG5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG5MouseEntered
         G5.setBackground(Color.decode("#FFFF00"));
-       QG5.setBackground(Color.decode("#FFFF00"));
+        QG5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG5MouseEntered
 
     private void QG5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG5MouseExited
         G5.setBackground(Color.decode("#FFFFFF"));
-       QG5.setBackground(Color.decode("#FFFFFF"));
+        QG5.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QG5MouseExited
 
     private void QG5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG5MouseClicked
@@ -5209,13 +5273,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG5MouseClicked
 
     private void G6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G6MouseEntered
-      G6.setBackground(Color.decode("#FFFF00"));
-      QG6.setBackground(Color.decode("#FFFF00"));
+        G6.setBackground(Color.decode("#FFFF00"));
+        QG6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G6MouseEntered
 
     private void G6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G6MouseExited
-     G6.setBackground(Color.decode("#000000"));
-     QG6.setBackground(Color.decode("#000000"));
+        G6.setBackground(Color.decode("#000000"));
+        QG6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_G6MouseExited
 
     private void G6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G6MouseClicked
@@ -5224,12 +5288,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QG6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG6MouseEntered
         G6.setBackground(Color.decode("#FFFF00"));
-      QG6.setBackground(Color.decode("#FFFF00"));
+        QG6.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG6MouseEntered
 
     private void QG6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG6MouseExited
         G6.setBackground(Color.decode("#000000"));
-     QG6.setBackground(Color.decode("#000000"));
+        QG6.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QG6MouseExited
 
     private void QG6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG6MouseClicked
@@ -5237,8 +5301,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG6MouseClicked
 
     private void G7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G7MouseEntered
-     G7.setBackground(Color.decode("#FFFF00"));
-     QG7.setBackground(Color.decode("#FFFF00"));
+        G7.setBackground(Color.decode("#FFFF00"));
+        QG7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G7MouseEntered
 
     private void G7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G7MouseExited
@@ -5252,7 +5316,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QG7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG7MouseEntered
         G7.setBackground(Color.decode("#FFFF00"));
-     QG7.setBackground(Color.decode("#FFFF00"));
+        QG7.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG7MouseEntered
 
     private void QG7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG7MouseExited
@@ -5265,13 +5329,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG7MouseClicked
 
     private void G8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G8MouseEntered
-       G8.setBackground(Color.decode("#FFFF00"));
-       QG8.setBackground(Color.decode("#FFFF00"));
+        G8.setBackground(Color.decode("#FFFF00"));
+        QG8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_G8MouseEntered
 
     private void G8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G8MouseExited
-     G8.setBackground(Color.decode("#000000"));
-     QG8.setBackground(Color.decode("#000000"));
+        G8.setBackground(Color.decode("#000000"));
+        QG8.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_G8MouseExited
 
     private void G8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G8MouseClicked
@@ -5279,13 +5343,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G8MouseClicked
 
     private void QG8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG8MouseEntered
-       G8.setBackground(Color.decode("#FFFF00"));
-       QG8.setBackground(Color.decode("#FFFF00"));
+        G8.setBackground(Color.decode("#FFFF00"));
+        QG8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QG8MouseEntered
 
     private void QG8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG8MouseExited
         G8.setBackground(Color.decode("#000000"));
-     QG8.setBackground(Color.decode("#000000"));
+        QG8.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QG8MouseExited
 
     private void QG8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG8MouseClicked
@@ -5293,8 +5357,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG8MouseClicked
 
     private void H1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H1MouseEntered
-       H1.setBackground(Color.decode("#FFFF00"));
-       QH1.setBackground(Color.decode("#FFFF00"));
+        H1.setBackground(Color.decode("#FFFF00"));
+        QH1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_H1MouseEntered
 
     private void H1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H1MouseExited
@@ -5307,8 +5371,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H1MouseClicked
 
     private void QH1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH1MouseEntered
-      H1.setBackground(Color.decode("#FFFF00"));
-       QH1.setBackground(Color.decode("#FFFF00"));
+        H1.setBackground(Color.decode("#FFFF00"));
+        QH1.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QH1MouseEntered
 
     private void QH1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH1MouseExited
@@ -5326,8 +5390,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H2MouseEntered
 
     private void H2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H2MouseExited
-       H2.setBackground(Color.decode("#FFFFFF"));
-       QH2.setBackground(Color.decode("#FFFFFF"));
+        H2.setBackground(Color.decode("#FFFFFF"));
+        QH2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_H2MouseExited
 
     private void H2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H2MouseClicked
@@ -5340,8 +5404,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH2MouseEntered
 
     private void QH2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH2MouseExited
-       H2.setBackground(Color.decode("#FFFFFF"));
-       QH2.setBackground(Color.decode("#FFFFFF"));
+        H2.setBackground(Color.decode("#FFFFFF"));
+        QH2.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QH2MouseExited
 
     private void QH2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH2MouseClicked
@@ -5349,13 +5413,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH2MouseClicked
 
     private void H3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H3MouseEntered
-      H3.setBackground(Color.decode("#FFFF00"));
-      QH3.setBackground(Color.decode("#FFFF00"));
+        H3.setBackground(Color.decode("#FFFF00"));
+        QH3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_H3MouseEntered
 
     private void H3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H3MouseExited
-       H3.setBackground(Color.decode("#000000"));
-       QH3.setBackground(Color.decode("#000000"));
+        H3.setBackground(Color.decode("#000000"));
+        QH3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_H3MouseExited
 
     private void H3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H3MouseClicked
@@ -5364,12 +5428,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QH3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH3MouseEntered
         H3.setBackground(Color.decode("#FFFF00"));
-      QH3.setBackground(Color.decode("#FFFF00"));
+        QH3.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QH3MouseEntered
 
     private void QH3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH3MouseExited
-       H3.setBackground(Color.decode("#000000"));
-       QH3.setBackground(Color.decode("#000000"));
+        H3.setBackground(Color.decode("#000000"));
+        QH3.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QH3MouseExited
 
     private void QH3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH3MouseClicked
@@ -5377,13 +5441,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH3MouseClicked
 
     private void H4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H4MouseEntered
-       H4.setBackground(Color.decode("#FFFF00"));
-       QH4.setBackground(Color.decode("#FFFF00"));
+        H4.setBackground(Color.decode("#FFFF00"));
+        QH4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_H4MouseEntered
 
     private void H4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H4MouseExited
-      H4.setBackground(Color.decode("#FFFFFF"));
-      QH4.setBackground(Color.decode("#FFFFFF"));
+        H4.setBackground(Color.decode("#FFFFFF"));
+        QH4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_H4MouseExited
 
     private void H4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H4MouseClicked
@@ -5392,12 +5456,12 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QH4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH4MouseEntered
         H4.setBackground(Color.decode("#FFFF00"));
-       QH4.setBackground(Color.decode("#FFFF00"));
+        QH4.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QH4MouseEntered
 
     private void QH4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH4MouseExited
-         H4.setBackground(Color.decode("#FFFFFF"));
-      QH4.setBackground(Color.decode("#FFFFFF"));
+        H4.setBackground(Color.decode("#FFFFFF"));
+        QH4.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QH4MouseExited
 
     private void QH4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH4MouseClicked
@@ -5405,8 +5469,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH4MouseClicked
 
     private void H5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H5MouseEntered
-      H5.setBackground(Color.decode("#FFFF00"));
-      QH5.setBackground(Color.decode("#FFFF00"));
+        H5.setBackground(Color.decode("#FFFF00"));
+        QH5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_H5MouseEntered
 
     private void H5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H5MouseExited
@@ -5420,7 +5484,7 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void QH5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH5MouseEntered
         H5.setBackground(Color.decode("#FFFF00"));
-      QH5.setBackground(Color.decode("#FFFF00"));
+        QH5.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QH5MouseEntered
 
     private void QH5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH5MouseExited
@@ -5438,8 +5502,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H6MouseEntered
 
     private void H6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H6MouseExited
-       H6.setBackground(Color.decode("#FFFFFF"));
-       QH6.setBackground(Color.decode("#FFFFFF"));
+        H6.setBackground(Color.decode("#FFFFFF"));
+        QH6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_H6MouseExited
 
     private void H6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H6MouseClicked
@@ -5452,8 +5516,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH6MouseEntered
 
     private void QH6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH6MouseExited
-       H6.setBackground(Color.decode("#FFFFFF"));
-       QH6.setBackground(Color.decode("#FFFFFF"));
+        H6.setBackground(Color.decode("#FFFFFF"));
+        QH6.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QH6MouseExited
 
     private void QH6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH6MouseClicked
@@ -5466,8 +5530,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H7MouseEntered
 
     private void H7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H7MouseExited
-       H7.setBackground(Color.decode("#000000"));
-       QH7.setBackground(Color.decode("#000000"));
+        H7.setBackground(Color.decode("#000000"));
+        QH7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_H7MouseExited
 
     private void H7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H7MouseClicked
@@ -5480,8 +5544,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH7MouseEntered
 
     private void QH7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH7MouseExited
-       H7.setBackground(Color.decode("#000000"));
-       QH7.setBackground(Color.decode("#000000"));
+        H7.setBackground(Color.decode("#000000"));
+        QH7.setBackground(Color.decode("#000000"));
     }//GEN-LAST:event_QH7MouseExited
 
     private void QH7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH7MouseClicked
@@ -5489,13 +5553,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH7MouseClicked
 
     private void H8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H8MouseEntered
-       H8.setBackground(Color.decode("#FFFF00"));
-       QH8.setBackground(Color.decode("#FFFF00"));
+        H8.setBackground(Color.decode("#FFFF00"));
+        QH8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_H8MouseEntered
 
     private void H8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H8MouseExited
-      H8.setBackground(Color.decode("#FFFFFF"));
-      QH8.setBackground(Color.decode("#FFFFFF"));
+        H8.setBackground(Color.decode("#FFFFFF"));
+        QH8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_H8MouseExited
 
     private void H8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H8MouseClicked
@@ -5503,13 +5567,13 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H8MouseClicked
 
     private void QH8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH8MouseEntered
-         H8.setBackground(Color.decode("#FFFF00"));
-       QH8.setBackground(Color.decode("#FFFF00"));
+        H8.setBackground(Color.decode("#FFFF00"));
+        QH8.setBackground(Color.decode("#FFFF00"));
     }//GEN-LAST:event_QH8MouseEntered
 
     private void QH8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH8MouseExited
-       H8.setBackground(Color.decode("#FFFFFF"));
-      QH8.setBackground(Color.decode("#FFFFFF"));
+        H8.setBackground(Color.decode("#FFFFFF"));
+        QH8.setBackground(Color.decode("#FFFFFF"));
     }//GEN-LAST:event_QH8MouseExited
 
     private void QH8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH8MouseClicked
@@ -5519,7 +5583,7 @@ public class EightQueens extends javax.swing.JFrame {
     private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
         // TODO add your handling code here:
         btnExit.setBackground(Color.white);
-         btnExit.setForeground(Color.decode("#FF3300"));
+        btnExit.setForeground(Color.decode("#FF3300"));
     }//GEN-LAST:event_btnExitMouseEntered
 
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
@@ -5531,7 +5595,7 @@ public class EightQueens extends javax.swing.JFrame {
     private void btnCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckMouseEntered
         // TODO add your handling code here:
         btnCheck.setBackground(Color.white);
-         btnCheck.setForeground(Color.decode("#9999FF"));
+        btnCheck.setForeground(Color.decode("#9999FF"));
     }//GEN-LAST:event_btnCheckMouseEntered
 
     private void btnCheckMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckMouseExited
@@ -5543,14 +5607,17 @@ public class EightQueens extends javax.swing.JFrame {
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         // TODO add your handling code here:
         Home hm = new Home();
-         hm.setVisible(true);
-         this.dispose();
+        hm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckMouseClicked
-        // TODO add your handling code here:
+        checkPattern();
     }//GEN-LAST:event_btnCheckMouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        setupBasics();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -5586,7 +5653,7 @@ public class EightQueens extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EightQueens().setVisible(true);
-                
+
             }
         });
     }
@@ -5729,4 +5796,436 @@ public class EightQueens extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
+
+    private void checkPattern() {
+        String pattern = createPattern();
+        try {
+            if (!pattern.equals("0000000000000000000000000000000000000000000000000000000000000000")) {
+                boolean checkIfCorrect = e8queen.checkPatterns(pattern);
+                if (checkIfCorrect) {
+                    int patternID = e8queen.getPatternID();
+                    System.out.println(patternID);
+                    boolean ifAlreadyFounded = e8queen.ifPatternFounded(patternID);
+                    System.out.println(patternID);
+                    if (!ifAlreadyFounded) {
+                        JOptionPane.showMessageDialog(this, "Congradulations you found the pattern", "Congrats...", JOptionPane.INFORMATION_MESSAGE);
+                        String name = JOptionPane.showInputDialog(this, "Enter Your Name ?", "Who are you?", JOptionPane.QUESTION_MESSAGE);
+                        boolean ifSuccess = e8queen.insertPatternFounder(patternID, name);
+                        if (ifSuccess) {
+                            JOptionPane.showMessageDialog(this, "Your Name Added to the book...", "Done...", JOptionPane.INFORMATION_MESSAGE);
+                            setupBasics();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Somthing went wrong while saving...\nclick check again", "Error...", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "This Pattern is already founded by " + e8queen.getPatternOwner(), "Oops...", JOptionPane.WARNING_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "This Pattern is Wrong...\nLet's try again", "Oops...", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Hey your board is empty...", "Oops...", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error : " + ex, "Error...", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String createPattern() {
+        String pattern = "";
+        //A
+        if (QA1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QA8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //B
+        if (QB1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QB8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //C
+        if (QC1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QC8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //D
+        if (QD1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QD8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //E
+        if (QE1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QE8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //F
+        if (QF1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QF8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //G
+        if (QG1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QG8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        //H
+        if (QH1.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH2.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH3.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH4.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH5.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH6.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH7.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+
+        if (QH8.getIcon() != null) {
+            pattern += "1";
+        } else {
+            pattern += "0";
+        }
+        System.out.println(pattern);
+        return pattern;
+    }
 }
