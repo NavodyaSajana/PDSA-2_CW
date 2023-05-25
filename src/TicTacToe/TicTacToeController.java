@@ -10,7 +10,7 @@ package TicTacToe;
  */
 import java.util.Scanner;
 
-public class TicTacToe {
+public class TicTacToeController {
 
     private static final char HUMAN_PLAYER = 'X';
     private static final char AI_PLAYER = 'O';
@@ -18,7 +18,7 @@ public class TicTacToe {
 
     private char[][] board;
 
-    public TicTacToe() {
+    public TicTacToeController() {
         board = new char[3][3];
         initializeBoard();
     }
@@ -187,7 +187,7 @@ public class TicTacToe {
     }
 
     //this method is designed to use in GUI
-    public void play(int row, int col) {
+    public String play(int row, int col) {
         //use getBoard() method without using printBoard() in the implementation.
         printBoard();
         if (!isGameOver()) {
@@ -198,14 +198,18 @@ public class TicTacToe {
             if (isGameOver()) {
                 if (checkWin(HUMAN_PLAYER)) {
                     System.out.println("You win!");
+                    return "HUMAN";
                 } else if (checkWin(AI_PLAYER)) {
                     System.out.println("You lose!");
+                    return "AI";
                 } else {
                     System.out.println("It's a draw!");
+                    return "DRAW";
                 }
             }
             printBoard();
         }
+        return " ";
     }
     
     public char[][] getBoard(){

@@ -4,8 +4,10 @@
  */
 package TicTacToe.View;
 
+import TicTacToe.TicTacToeController;
 import fitos_games.Home;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +21,11 @@ public class TicTacToe extends javax.swing.JFrame {
     public TicTacToe() {
         initComponents();
         this.setTitle("Tic Tac Toe Game");
+
     }
+
+    char board[][] = new char[3][3];
+    TicTacToeController tic = new TicTacToeController();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,7 +56,7 @@ public class TicTacToe extends javax.swing.JFrame {
         A1.setBackground(new java.awt.Color(255, 255, 255));
         A1.setForeground(new java.awt.Color(255, 0, 51));
         A1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        A1.setText("X");
+        A1.setText(" ");
         A1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         A1.setRoundTopLeft(30);
         A1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,7 +74,7 @@ public class TicTacToe extends javax.swing.JFrame {
         A2.setBackground(new java.awt.Color(255, 255, 255));
         A2.setForeground(new java.awt.Color(153, 153, 255));
         A2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        A2.setText("O");
+        A2.setText(" ");
         A2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         A2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -85,7 +91,7 @@ public class TicTacToe extends javax.swing.JFrame {
         A3.setBackground(new java.awt.Color(255, 255, 255));
         A3.setForeground(new java.awt.Color(255, 0, 51));
         A3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        A3.setText("X");
+        A3.setText(" ");
         A3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         A3.setRoundTopRight(30);
         A3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,7 +109,7 @@ public class TicTacToe extends javax.swing.JFrame {
         B1.setBackground(new java.awt.Color(255, 255, 255));
         B1.setForeground(new java.awt.Color(255, 0, 51));
         B1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        B1.setText("X");
+        B1.setText(" ");
         B1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         B1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,7 +126,7 @@ public class TicTacToe extends javax.swing.JFrame {
         B2.setBackground(new java.awt.Color(255, 255, 255));
         B2.setForeground(new java.awt.Color(255, 0, 51));
         B2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        B2.setText("X");
+        B2.setText(" ");
         B2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         B2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -137,7 +143,7 @@ public class TicTacToe extends javax.swing.JFrame {
         B3.setBackground(new java.awt.Color(255, 255, 255));
         B3.setForeground(new java.awt.Color(153, 153, 255));
         B3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        B3.setText("O");
+        B3.setText(" ");
         B3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         B3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -154,7 +160,7 @@ public class TicTacToe extends javax.swing.JFrame {
         C2.setBackground(new java.awt.Color(255, 255, 255));
         C2.setForeground(new java.awt.Color(255, 0, 51));
         C2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        C2.setText("X");
+        C2.setText(" ");
         C2.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         C2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -171,7 +177,7 @@ public class TicTacToe extends javax.swing.JFrame {
         C3.setBackground(new java.awt.Color(255, 255, 255));
         C3.setForeground(new java.awt.Color(255, 0, 51));
         C3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        C3.setText("X");
+        C3.setText(" ");
         C3.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         C3.setRoundBottomRight(30);
         C3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -189,7 +195,7 @@ public class TicTacToe extends javax.swing.JFrame {
         C1.setBackground(new java.awt.Color(255, 255, 255));
         C1.setForeground(new java.awt.Color(153, 153, 255));
         C1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        C1.setText("O");
+        C1.setText(" ");
         C1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         C1.setRoundBottomLeft(30);
         C1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -337,10 +343,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void A1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A1MouseClicked
         // TODO add your handling code here:
-        if(A1.getText().contentEquals("X"))
-        {A1.setText("");}
-        else
-        {A1.setText("X");}
+        if (A1.getText().equals(" ")) {
+            String win = tic.play(0, 0);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_A1MouseClicked
 
     private void A2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseEntered
@@ -355,6 +362,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void A2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseClicked
         // TODO add your handling code here:
+        if (A2.getText().equals(" ")) {
+            String win = tic.play(0, 1);            
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_A2MouseClicked
 
     private void A3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A3MouseEntered
@@ -369,6 +381,12 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void A3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A3MouseClicked
         // TODO add your handling code here:
+        if (A3.getText().equals(" ")) {
+            //A1.setText("X");
+            String win = tic.play(0, 2);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_A3MouseClicked
 
     private void B1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseEntered
@@ -383,6 +401,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void B1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseClicked
         // TODO add your handling code here:
+        if (B1.getText().equals(" ")) {
+            String win = tic.play(1, 0);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_B1MouseClicked
 
     private void B2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MouseEntered
@@ -397,6 +420,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void B2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B2MouseClicked
         // TODO add your handling code here:
+        if (B2.getText().equals(" ")) {
+            String win = tic.play(1, 1);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_B2MouseClicked
 
     private void B3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseEntered
@@ -411,6 +439,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void B3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseClicked
         // TODO add your handling code here:
+        if (B3.getText().equals(" ")) {
+            String win = tic.play(1, 2);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_B3MouseClicked
 
     private void C1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseEntered
@@ -425,6 +458,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void C1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C1MouseClicked
         // TODO add your handling code here:
+        if (C1.getText().equals(" ")) {
+            String win = tic.play(2, 0);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_C1MouseClicked
 
     private void C2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseEntered
@@ -439,6 +477,11 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void C2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseClicked
         // TODO add your handling code here:
+        if (C2.getText().equals(" ")) {
+            String win = tic.play(2, 1);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_C2MouseClicked
 
     private void C3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C3MouseEntered
@@ -453,12 +496,17 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void C3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C3MouseClicked
         // TODO add your handling code here:
+        if (C3.getText().equals(" ")) {
+            String win = tic.play(2, 2);
+            setBoard();
+            isGameOver(win);
+        }
     }//GEN-LAST:event_C3MouseClicked
 
     private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
         // TODO add your handling code here:
         btnExit.setBackground(Color.white);
-         btnExit.setForeground(Color.decode("#FF3300"));
+        btnExit.setForeground(Color.decode("#FF3300"));
     }//GEN-LAST:event_btnExitMouseEntered
 
     private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
@@ -469,15 +517,15 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
         // TODO add your handling code here:
-         Home hm = new Home();
-         hm.setVisible(true);
-         this.dispose();
+        Home hm = new Home();
+        hm.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnResetMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseEntered
         // TODO add your handling code here:
         btnReset.setBackground(Color.white);
-         btnReset.setForeground(Color.decode("#9999FF"));
+        btnReset.setForeground(Color.decode("#9999FF"));
     }//GEN-LAST:event_btnResetMouseEntered
 
     private void btnResetMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseExited
@@ -488,6 +536,8 @@ public class TicTacToe extends javax.swing.JFrame {
 
     private void btnResetMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnResetMouseClicked
         // TODO add your handling code here:
+        new TicTacToe().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnResetMouseClicked
 
     /**
@@ -540,4 +590,96 @@ public class TicTacToe extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
+    private void setBoard() {
+        char board[][] = new char[3][3];
+        board = tic.getBoard();
+        /// setting AI
+        if (board[0][0] == 'O') {
+            A1.setForeground(Color.decode("#9999FF"));
+            A1.setText("O");
+        }
+        if (board[0][1] == 'O') {
+            A2.setForeground(Color.decode("#9999FF"));
+            A2.setText("O");
+        }
+        if (board[0][2] == 'O') {
+            A3.setForeground(Color.decode("#9999FF"));
+            A3.setText("O");
+        }
+        if (board[1][0] == 'O') {
+            B1.setForeground(Color.decode("#9999FF"));
+            B1.setText("O");
+        }
+        if (board[1][1] == 'O') {
+            B2.setForeground(Color.decode("#9999FF"));
+            B2.setText("O");
+        }
+        if (board[1][2] == 'O') {
+            B3.setForeground(Color.decode("#9999FF"));
+            B3.setText("O");
+        }
+        if (board[2][0] == 'O') {
+            C1.setForeground(Color.decode("#9999FF"));
+            C1.setText("O");
+        }
+        if (board[2][1] == 'O') {
+            C2.setForeground(Color.decode("#9999FF"));
+            C2.setText("O");
+        }
+        if (board[2][2] == 'O') {
+            C3.setForeground(Color.decode("#9999FF"));
+            C3.setText("O");
+        }
+
+        //Setting human
+        if (board[0][0] == 'X') {
+            A1.setForeground(Color.decode("#FF0033"));
+            A1.setText("X");
+        }
+        if (board[0][1] == 'X') {
+            A2.setForeground(Color.decode("#FF0033"));
+            A2.setText("X");
+        }
+        if (board[0][2] == 'X') {
+            A3.setForeground(Color.decode("#FF0033"));
+            A3.setText("X");
+        }
+        if (board[1][0] == 'X') {
+            B1.setForeground(Color.decode("#FF0033"));
+            B1.setText("X");
+        }
+        if (board[1][1] == 'X') {
+            B2.setForeground(Color.decode("#FF0033"));
+            B2.setText("X");
+        }
+        if (board[1][2] == 'X') {
+            B3.setForeground(Color.decode("#FF0033"));
+            B3.setText("X");
+        }
+        if (board[2][0] == 'X') {
+            C1.setForeground(Color.decode("#FF0033"));
+            C1.setText("X");
+        }
+        if (board[2][1] == 'X') {
+            C2.setForeground(Color.decode("#FF0033"));
+            C2.setText("X");
+        }
+        if (board[2][2] == 'X') {
+            C3.setForeground(Color.decode("#FF0033"));
+            C3.setText("X");
+        }
+    }
+
+    private void isGameOver(String win) {
+        if (win.equals("HUMAN")) {
+            JOptionPane.showMessageDialog(this, "Congradulations You Won The Game", "Wow...",  JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (win.equals("AI")) {
+            JOptionPane.showMessageDialog(this, "You Loose The Game Better Luck Next Time", "Oops...",  JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (win.equals("DRAW")) {
+            JOptionPane.showMessageDialog(this, "It's a Draw Let's Play Again", "Info...",  JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 }
