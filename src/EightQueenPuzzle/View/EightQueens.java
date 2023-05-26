@@ -5612,7 +5612,10 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckMouseClicked
-        checkPattern();
+        if(queenCount==0)
+            checkPattern();
+        else
+            JOptionPane.showMessageDialog(this, "There are "+queenCount+" Queens waiting at the lobby","Check...",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnCheckMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
