@@ -20,12 +20,12 @@ import javax.swing.JLabel;
  *
  * @author malith
  */
-public class IdentifyMinimumConnectorsGame extends javax.swing.JFrame {
+public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
 
     /**
      * Creates new form IdentifyMinimumConnectors
      */
-    public IdentifyMinimumConnectorsGame() {
+    public IdentifyMinimumConnectersGame() {
         initComponents();
         this.setTitle("Identify minimum connecters Game");
   
@@ -1946,14 +1946,44 @@ public class IdentifyMinimumConnectorsGame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IdentifyMinimumConnectorsGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IdentifyMinimumConnectersGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IdentifyMinimumConnectorsGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IdentifyMinimumConnectersGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IdentifyMinimumConnectorsGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IdentifyMinimumConnectersGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IdentifyMinimumConnectorsGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IdentifyMinimumConnectersGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
          
@@ -1961,7 +1991,7 @@ public class IdentifyMinimumConnectorsGame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new IdentifyMinimumConnectorsGame().setVisible(true);
+                new IdentifyMinimumConnectersGame().setVisible(true);
                
             }
         });
