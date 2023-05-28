@@ -5,6 +5,8 @@
 package fitos_games;
 
 import EightQueenPuzzle.View.EightQueens;
+import Huffman.View.HuffmanMenu;
+import IdentifyMinimumConnecters.View.IdentifyMinimumConnectorsGame;
 import TicTacToe.View.TicTacToe;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -188,6 +190,9 @@ public class Home extends javax.swing.JFrame {
         Game2PlayBtn.setRoundTopLeft(30);
         Game2PlayBtn.setRoundTopRight(30);
         Game2PlayBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Game2PlayBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Game2PlayBtnMouseEntered(evt);
             }
@@ -365,6 +370,9 @@ public class Home extends javax.swing.JFrame {
         Game5PlayBtn.setRoundTopLeft(30);
         Game5PlayBtn.setRoundTopRight(30);
         Game5PlayBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Game5PlayBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Game5PlayBtnMouseEntered(evt);
             }
@@ -376,7 +384,7 @@ public class Home extends javax.swing.JFrame {
         Game5Name.setBackground(new java.awt.Color(0, 204, 204));
         Game5Name.setForeground(new java.awt.Color(255, 255, 255));
         Game5Name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Game5Name.setText("Identify minimum connecters");
+        Game5Name.setText("Identify Minimum Connecters");
         Game5Name.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         Game5Name.setRoundTopLeft(25);
         Game5Name.setRoundTopRight(25);
@@ -579,6 +587,21 @@ public class Home extends javax.swing.JFrame {
          tictactoe.setVisible(true);
          this.dispose();
     }//GEN-LAST:event_Game3PlayBtnMouseClicked
+
+    private void Game2PlayBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Game2PlayBtnMouseClicked
+        // TODO add your handling code here:
+        HuffmanMenu hufman = new HuffmanMenu();
+        hufman.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_Game2PlayBtnMouseClicked
+
+    private void Game5PlayBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Game5PlayBtnMouseClicked
+        // TODO add your handling code here:
+        IdentifyMinimumConnecters.View.IdentifyMinimumConnectorsGame icm = new IdentifyMinimumConnectorsGame();
+        icm.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_Game5PlayBtnMouseClicked
 
     
     

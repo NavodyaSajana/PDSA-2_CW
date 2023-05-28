@@ -1,4 +1,4 @@
-package FindTheShortestPath2.Controller;
+package IdentifyMinimumConnecters.Controller;
 
 
 import FindTheShortestPath2.Dijkstra;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Sajana
  */
-public class FindTheShortestPath2Controller {
+public class IdentifyminimumConnectersController {
     public void start(){
         Dijkstra dj = new Dijkstra();
         
