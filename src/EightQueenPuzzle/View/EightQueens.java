@@ -303,7 +303,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        A2.setBackground(new java.awt.Color(0, 0, 0));
+        A2.setBackground(new java.awt.Color(153, 153, 255));
         A2.setPreferredSize(new java.awt.Dimension(78, 64));
         A2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -317,7 +317,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QA2.setBackground(new java.awt.Color(0, 0, 0));
+        QA2.setBackground(new java.awt.Color(153, 153, 255));
         QA2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QA2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QA2.setRoundBottomLeft(700);
@@ -403,7 +403,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        A4.setBackground(new java.awt.Color(0, 0, 0));
+        A4.setBackground(new java.awt.Color(153, 153, 255));
         A4.setPreferredSize(new java.awt.Dimension(78, 64));
         A4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -417,7 +417,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QA4.setBackground(new java.awt.Color(0, 0, 0));
+        QA4.setBackground(new java.awt.Color(153, 153, 255));
         QA4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QA4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QA4.setRoundBottomLeft(700);
@@ -503,7 +503,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        A6.setBackground(new java.awt.Color(0, 0, 0));
+        A6.setBackground(new java.awt.Color(153, 153, 255));
         A6.setPreferredSize(new java.awt.Dimension(78, 64));
         A6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -517,7 +517,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QA6.setBackground(new java.awt.Color(0, 0, 0));
+        QA6.setBackground(new java.awt.Color(153, 153, 255));
         QA6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QA6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QA6.setRoundBottomLeft(700);
@@ -603,7 +603,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        A8.setBackground(new java.awt.Color(0, 0, 0));
+        A8.setBackground(new java.awt.Color(153, 153, 255));
         A8.setPreferredSize(new java.awt.Dimension(78, 64));
         A8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -617,7 +617,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QA8.setBackground(new java.awt.Color(0, 0, 0));
+        QA8.setBackground(new java.awt.Color(153, 153, 255));
         QA8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QA8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QA8.setRoundBottomLeft(700);
@@ -653,7 +653,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        B1.setBackground(new java.awt.Color(0, 0, 0));
+        B1.setBackground(new java.awt.Color(153, 153, 255));
         B1.setPreferredSize(new java.awt.Dimension(78, 64));
         B1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -667,7 +667,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QB1.setBackground(new java.awt.Color(0, 0, 0));
+        QB1.setBackground(new java.awt.Color(153, 153, 255));
         QB1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QB1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QB1.setRoundBottomLeft(700);
@@ -753,7 +753,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        B3.setBackground(new java.awt.Color(0, 0, 0));
+        B3.setBackground(new java.awt.Color(153, 153, 255));
         B3.setPreferredSize(new java.awt.Dimension(78, 64));
         B3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -767,7 +767,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QB3.setBackground(new java.awt.Color(0, 0, 0));
+        QB3.setBackground(new java.awt.Color(153, 153, 255));
         QB3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QB3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QB3.setRoundBottomLeft(700);
@@ -853,7 +853,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        B5.setBackground(new java.awt.Color(0, 0, 0));
+        B5.setBackground(new java.awt.Color(153, 153, 255));
         B5.setPreferredSize(new java.awt.Dimension(78, 64));
         B5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -867,7 +867,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QB5.setBackground(new java.awt.Color(0, 0, 0));
+        QB5.setBackground(new java.awt.Color(153, 153, 255));
         QB5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QB5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QB5.setRoundBottomLeft(700);
@@ -953,7 +953,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        B7.setBackground(new java.awt.Color(0, 0, 0));
+        B7.setBackground(new java.awt.Color(153, 153, 255));
         B7.setPreferredSize(new java.awt.Dimension(78, 64));
         B7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -967,7 +967,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QB7.setBackground(new java.awt.Color(0, 0, 0));
+        QB7.setBackground(new java.awt.Color(153, 153, 255));
         QB7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QB7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QB7.setRoundBottomLeft(700);
@@ -1103,7 +1103,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        C2.setBackground(new java.awt.Color(0, 0, 0));
+        C2.setBackground(new java.awt.Color(153, 153, 255));
         C2.setPreferredSize(new java.awt.Dimension(78, 64));
         C2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1117,7 +1117,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QC2.setBackground(new java.awt.Color(0, 0, 0));
+        QC2.setBackground(new java.awt.Color(153, 153, 255));
         QC2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QC2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QC2.setRoundBottomLeft(700);
@@ -1203,7 +1203,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        C4.setBackground(new java.awt.Color(0, 0, 0));
+        C4.setBackground(new java.awt.Color(153, 153, 255));
         C4.setPreferredSize(new java.awt.Dimension(78, 64));
         C4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1217,7 +1217,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QC4.setBackground(new java.awt.Color(0, 0, 0));
+        QC4.setBackground(new java.awt.Color(153, 153, 255));
         QC4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QC4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QC4.setRoundBottomLeft(700);
@@ -1303,7 +1303,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        C6.setBackground(new java.awt.Color(0, 0, 0));
+        C6.setBackground(new java.awt.Color(153, 153, 255));
         C6.setPreferredSize(new java.awt.Dimension(78, 64));
         C6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1317,7 +1317,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QC6.setBackground(new java.awt.Color(0, 0, 0));
+        QC6.setBackground(new java.awt.Color(153, 153, 255));
         QC6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QC6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QC6.setRoundBottomLeft(700);
@@ -1403,7 +1403,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        C8.setBackground(new java.awt.Color(0, 0, 0));
+        C8.setBackground(new java.awt.Color(153, 153, 255));
         C8.setPreferredSize(new java.awt.Dimension(78, 64));
         C8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1417,7 +1417,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QC8.setBackground(new java.awt.Color(0, 0, 0));
+        QC8.setBackground(new java.awt.Color(153, 153, 255));
         QC8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QC8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QC8.setRoundBottomLeft(700);
@@ -1453,7 +1453,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        D1.setBackground(new java.awt.Color(0, 0, 0));
+        D1.setBackground(new java.awt.Color(153, 153, 255));
         D1.setPreferredSize(new java.awt.Dimension(78, 64));
         D1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1467,7 +1467,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QD1.setBackground(new java.awt.Color(0, 0, 0));
+        QD1.setBackground(new java.awt.Color(153, 153, 255));
         QD1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QD1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QD1.setRoundBottomLeft(700);
@@ -1553,7 +1553,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        D3.setBackground(new java.awt.Color(0, 0, 0));
+        D3.setBackground(new java.awt.Color(153, 153, 255));
         D3.setPreferredSize(new java.awt.Dimension(78, 64));
         D3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1567,7 +1567,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QD3.setBackground(new java.awt.Color(0, 0, 0));
+        QD3.setBackground(new java.awt.Color(153, 153, 255));
         QD3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QD3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QD3.setRoundBottomLeft(700);
@@ -1653,7 +1653,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        D5.setBackground(new java.awt.Color(0, 0, 0));
+        D5.setBackground(new java.awt.Color(153, 153, 255));
         D5.setPreferredSize(new java.awt.Dimension(78, 64));
         D5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1667,7 +1667,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QD5.setBackground(new java.awt.Color(0, 0, 0));
+        QD5.setBackground(new java.awt.Color(153, 153, 255));
         QD5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QD5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QD5.setRoundBottomLeft(700);
@@ -1753,7 +1753,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        D7.setBackground(new java.awt.Color(0, 0, 0));
+        D7.setBackground(new java.awt.Color(153, 153, 255));
         D7.setPreferredSize(new java.awt.Dimension(78, 64));
         D7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1767,7 +1767,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QD7.setBackground(new java.awt.Color(0, 0, 0));
+        QD7.setBackground(new java.awt.Color(153, 153, 255));
         QD7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QD7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QD7.setRoundBottomLeft(700);
@@ -1903,7 +1903,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        E2.setBackground(new java.awt.Color(0, 0, 0));
+        E2.setBackground(new java.awt.Color(153, 153, 255));
         E2.setPreferredSize(new java.awt.Dimension(78, 64));
         E2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1917,7 +1917,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QE2.setBackground(new java.awt.Color(0, 0, 0));
+        QE2.setBackground(new java.awt.Color(153, 153, 255));
         QE2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QE2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QE2.setRoundBottomLeft(700);
@@ -2003,7 +2003,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        E4.setBackground(new java.awt.Color(0, 0, 0));
+        E4.setBackground(new java.awt.Color(153, 153, 255));
         E4.setPreferredSize(new java.awt.Dimension(78, 64));
         E4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2017,7 +2017,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QE4.setBackground(new java.awt.Color(0, 0, 0));
+        QE4.setBackground(new java.awt.Color(153, 153, 255));
         QE4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QE4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QE4.setRoundBottomLeft(700);
@@ -2103,7 +2103,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        E6.setBackground(new java.awt.Color(0, 0, 0));
+        E6.setBackground(new java.awt.Color(153, 153, 255));
         E6.setPreferredSize(new java.awt.Dimension(78, 64));
         E6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2117,7 +2117,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QE6.setBackground(new java.awt.Color(0, 0, 0));
+        QE6.setBackground(new java.awt.Color(153, 153, 255));
         QE6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QE6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QE6.setRoundBottomLeft(700);
@@ -2203,7 +2203,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        E8.setBackground(new java.awt.Color(0, 0, 0));
+        E8.setBackground(new java.awt.Color(153, 153, 255));
         E8.setPreferredSize(new java.awt.Dimension(78, 64));
         E8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2217,7 +2217,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QE8.setBackground(new java.awt.Color(0, 0, 0));
+        QE8.setBackground(new java.awt.Color(153, 153, 255));
         QE8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QE8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QE8.setRoundBottomLeft(700);
@@ -2253,7 +2253,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        F1.setBackground(new java.awt.Color(0, 0, 0));
+        F1.setBackground(new java.awt.Color(153, 153, 255));
         F1.setPreferredSize(new java.awt.Dimension(78, 64));
         F1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2267,7 +2267,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QF1.setBackground(new java.awt.Color(0, 0, 0));
+        QF1.setBackground(new java.awt.Color(153, 153, 255));
         QF1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QF1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QF1.setRoundBottomLeft(700);
@@ -2353,7 +2353,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        F3.setBackground(new java.awt.Color(0, 0, 0));
+        F3.setBackground(new java.awt.Color(153, 153, 255));
         F3.setPreferredSize(new java.awt.Dimension(78, 64));
         F3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2367,7 +2367,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QF3.setBackground(new java.awt.Color(0, 0, 0));
+        QF3.setBackground(new java.awt.Color(153, 153, 255));
         QF3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QF3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QF3.setRoundBottomLeft(700);
@@ -2453,7 +2453,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        F5.setBackground(new java.awt.Color(0, 0, 0));
+        F5.setBackground(new java.awt.Color(153, 153, 255));
         F5.setPreferredSize(new java.awt.Dimension(78, 64));
         F5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2467,7 +2467,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QF5.setBackground(new java.awt.Color(0, 0, 0));
+        QF5.setBackground(new java.awt.Color(153, 153, 255));
         QF5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QF5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QF5.setRoundBottomLeft(700);
@@ -2553,7 +2553,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        F7.setBackground(new java.awt.Color(0, 0, 0));
+        F7.setBackground(new java.awt.Color(153, 153, 255));
         F7.setPreferredSize(new java.awt.Dimension(78, 64));
         F7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2567,7 +2567,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QF7.setBackground(new java.awt.Color(0, 0, 0));
+        QF7.setBackground(new java.awt.Color(153, 153, 255));
         QF7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QF7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QF7.setRoundBottomLeft(700);
@@ -2703,7 +2703,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        G2.setBackground(new java.awt.Color(0, 0, 0));
+        G2.setBackground(new java.awt.Color(153, 153, 255));
         G2.setPreferredSize(new java.awt.Dimension(78, 64));
         G2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2717,7 +2717,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QG2.setBackground(new java.awt.Color(0, 0, 0));
+        QG2.setBackground(new java.awt.Color(153, 153, 255));
         QG2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QG2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QG2.setRoundBottomLeft(700);
@@ -2803,7 +2803,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        G4.setBackground(new java.awt.Color(0, 0, 0));
+        G4.setBackground(new java.awt.Color(153, 153, 255));
         G4.setPreferredSize(new java.awt.Dimension(78, 64));
         G4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2817,7 +2817,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QG4.setBackground(new java.awt.Color(0, 0, 0));
+        QG4.setBackground(new java.awt.Color(153, 153, 255));
         QG4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QG4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QG4.setRoundBottomLeft(700);
@@ -2903,7 +2903,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        G6.setBackground(new java.awt.Color(0, 0, 0));
+        G6.setBackground(new java.awt.Color(153, 153, 255));
         G6.setPreferredSize(new java.awt.Dimension(78, 64));
         G6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2917,7 +2917,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QG6.setBackground(new java.awt.Color(0, 0, 0));
+        QG6.setBackground(new java.awt.Color(153, 153, 255));
         QG6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QG6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QG6.setRoundBottomLeft(700);
@@ -3003,7 +3003,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        G8.setBackground(new java.awt.Color(0, 0, 0));
+        G8.setBackground(new java.awt.Color(153, 153, 255));
         G8.setPreferredSize(new java.awt.Dimension(78, 64));
         G8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3017,7 +3017,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QG8.setBackground(new java.awt.Color(0, 0, 0));
+        QG8.setBackground(new java.awt.Color(153, 153, 255));
         QG8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QG8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QG8.setRoundBottomLeft(700);
@@ -3053,7 +3053,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        H1.setBackground(new java.awt.Color(0, 0, 0));
+        H1.setBackground(new java.awt.Color(153, 153, 255));
         H1.setPreferredSize(new java.awt.Dimension(78, 64));
         H1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3067,7 +3067,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QH1.setBackground(new java.awt.Color(0, 0, 0));
+        QH1.setBackground(new java.awt.Color(153, 153, 255));
         QH1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QH1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QH1.setRoundBottomLeft(700);
@@ -3153,7 +3153,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        H3.setBackground(new java.awt.Color(0, 0, 0));
+        H3.setBackground(new java.awt.Color(153, 153, 255));
         H3.setPreferredSize(new java.awt.Dimension(78, 64));
         H3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3167,7 +3167,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QH3.setBackground(new java.awt.Color(0, 0, 0));
+        QH3.setBackground(new java.awt.Color(153, 153, 255));
         QH3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QH3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QH3.setRoundBottomLeft(700);
@@ -3253,7 +3253,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        H5.setBackground(new java.awt.Color(0, 0, 0));
+        H5.setBackground(new java.awt.Color(153, 153, 255));
         H5.setPreferredSize(new java.awt.Dimension(78, 64));
         H5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3267,7 +3267,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QH5.setBackground(new java.awt.Color(0, 0, 0));
+        QH5.setBackground(new java.awt.Color(153, 153, 255));
         QH5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QH5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QH5.setRoundBottomLeft(700);
@@ -3353,7 +3353,7 @@ public class EightQueens extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        H7.setBackground(new java.awt.Color(0, 0, 0));
+        H7.setBackground(new java.awt.Color(153, 153, 255));
         H7.setPreferredSize(new java.awt.Dimension(78, 64));
         H7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3367,7 +3367,7 @@ public class EightQueens extends javax.swing.JFrame {
             }
         });
 
-        QH7.setBackground(new java.awt.Color(0, 0, 0));
+        QH7.setBackground(new java.awt.Color(153, 153, 255));
         QH7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QH7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         QH7.setRoundBottomLeft(700);
@@ -3808,8 +3808,8 @@ public class EightQueens extends javax.swing.JFrame {
 
     private void A2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseExited
 
-        A2.setBackground(Color.decode("#000000"));
-        QA2.setBackground(Color.decode("#000000"));
+        A2.setBackground(Color.decode("#9999FF"));
+        QA2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_A2MouseExited
 
     private void A2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A2MouseClicked
@@ -3886,8 +3886,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA2MouseEntered
 
     private void QA2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA2MouseExited
-        A2.setBackground(Color.decode("#000000"));
-        QA2.setBackground(Color.decode("#000000"));
+        A2.setBackground(Color.decode("#9999FF"));
+        QA2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QA2MouseExited
 
     private void QA3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA3MouseEntered
@@ -3906,8 +3906,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A4MouseEntered
 
     private void A4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A4MouseExited
-        A4.setBackground(Color.decode("#000000"));
-        QA4.setBackground(Color.decode("#000000"));
+        A4.setBackground(Color.decode("#9999FF"));
+        QA4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_A4MouseExited
 
     private void A4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A4MouseClicked
@@ -3920,8 +3920,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA4MouseEntered
 
     private void QA4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA4MouseExited
-        A4.setBackground(Color.decode("#000000"));
-        QA4.setBackground(Color.decode("#000000"));
+        A4.setBackground(Color.decode("#9999FF"));
+        QA4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QA4MouseExited
 
     private void QA4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA4MouseClicked
@@ -3934,8 +3934,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A6MouseEntered
 
     private void A6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A6MouseExited
-        A6.setBackground(Color.decode("#000000"));
-        QA6.setBackground(Color.decode("#000000"));
+        A6.setBackground(Color.decode("#9999FF"));
+        QA6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_A6MouseExited
 
     private void A6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A6MouseClicked
@@ -3948,8 +3948,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA6MouseEntered
 
     private void QA6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA6MouseExited
-        A6.setBackground(Color.decode("#000000"));
-        QA6.setBackground(Color.decode("#000000"));
+        A6.setBackground(Color.decode("#9999FF"));
+        QA6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QA6MouseExited
 
     private void QA6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA6MouseClicked
@@ -3990,8 +3990,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_A8MouseEntered
 
     private void A8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A8MouseExited
-        A8.setBackground(Color.decode("#000000"));
-        QA8.setBackground(Color.decode("#000000"));
+        A8.setBackground(Color.decode("#9999FF"));
+        QA8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_A8MouseExited
 
     private void A8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_A8MouseClicked
@@ -4004,8 +4004,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QA8MouseEntered
 
     private void QA8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA8MouseExited
-        A8.setBackground(Color.decode("#000000"));
-        QA8.setBackground(Color.decode("#000000"));
+        A8.setBackground(Color.decode("#9999FF"));
+        QA8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QA8MouseExited
 
     private void QA8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QA8MouseClicked
@@ -4018,8 +4018,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B1MouseEntered
 
     private void B1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseExited
-        B1.setBackground(Color.decode("#000000"));
-        QB1.setBackground(Color.decode("#000000"));
+        B1.setBackground(Color.decode("#9999FF"));
+        QB1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_B1MouseExited
 
     private void B1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B1MouseClicked
@@ -4032,8 +4032,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB1MouseEntered
 
     private void QB1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB1MouseExited
-        B1.setBackground(Color.decode("#000000"));
-        QB1.setBackground(Color.decode("#000000"));
+        B1.setBackground(Color.decode("#9999FF"));
+        QB1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QB1MouseExited
 
     private void QB1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB1MouseClicked
@@ -4074,8 +4074,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B3MouseEntered
 
     private void B3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseExited
-        B3.setBackground(Color.decode("#000000"));
-        QB3.setBackground(Color.decode("#000000"));
+        B3.setBackground(Color.decode("#9999FF"));
+        QB3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_B3MouseExited
 
     private void B3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B3MouseClicked
@@ -4088,8 +4088,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB3MouseEntered
 
     private void QB3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB3MouseExited
-        B3.setBackground(Color.decode("#000000"));
-        QB3.setBackground(Color.decode("#000000"));
+        B3.setBackground(Color.decode("#9999FF"));
+        QB3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QB3MouseExited
 
     private void QB3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB3MouseClicked
@@ -4130,8 +4130,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B5MouseEntered
 
     private void B5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MouseExited
-        B5.setBackground(Color.decode("#000000"));
-        QB5.setBackground(Color.decode("#000000"));
+        B5.setBackground(Color.decode("#9999FF"));
+        QB5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_B5MouseExited
 
     private void B5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B5MouseClicked
@@ -4144,8 +4144,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB5MouseEntered
 
     private void QB5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB5MouseExited
-        B5.setBackground(Color.decode("#000000"));
-        QB5.setBackground(Color.decode("#000000"));
+        B5.setBackground(Color.decode("#9999FF"));
+        QB5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QB5MouseExited
 
     private void QB5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB5MouseClicked
@@ -4186,8 +4186,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_B7MouseEntered
 
     private void B7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B7MouseExited
-        B7.setBackground(Color.decode("#000000"));
-        QB7.setBackground(Color.decode("#000000"));
+        B7.setBackground(Color.decode("#9999FF"));
+        QB7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_B7MouseExited
 
     private void B7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B7MouseClicked
@@ -4200,8 +4200,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QB7MouseEntered
 
     private void QB7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB7MouseExited
-        B7.setBackground(Color.decode("#000000"));
-        QB7.setBackground(Color.decode("#000000"));
+        B7.setBackground(Color.decode("#9999FF"));
+        QB7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QB7MouseExited
 
     private void QB7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QB7MouseClicked
@@ -4270,8 +4270,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C2MouseEntered
 
     private void C2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseExited
-        C2.setBackground(Color.decode("#000000"));
-        QC2.setBackground(Color.decode("#000000"));
+        C2.setBackground(Color.decode("#9999FF"));
+        QC2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_C2MouseExited
 
     private void C2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C2MouseClicked
@@ -4284,8 +4284,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC2MouseEntered
 
     private void QC2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC2MouseExited
-        C2.setBackground(Color.decode("#000000"));
-        QC2.setBackground(Color.decode("#000000"));
+        C2.setBackground(Color.decode("#9999FF"));
+        QC2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QC2MouseExited
 
     private void QC2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC2MouseClicked
@@ -4326,8 +4326,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C4MouseEntered
 
     private void C4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseExited
-        C4.setBackground(Color.decode("#000000"));
-        QC4.setBackground(Color.decode("#000000"));
+        C4.setBackground(Color.decode("#9999FF"));
+        QC4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_C4MouseExited
 
     private void C4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C4MouseClicked
@@ -4340,8 +4340,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC4MouseEntered
 
     private void QC4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC4MouseExited
-        C4.setBackground(Color.decode("#000000"));
-        QC4.setBackground(Color.decode("#000000"));
+        C4.setBackground(Color.decode("#9999FF"));
+        QC4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QC4MouseExited
 
     private void QC4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC4MouseClicked
@@ -4382,8 +4382,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C6MouseEntered
 
     private void C6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C6MouseExited
-        C6.setBackground(Color.decode(("000000")));
-        QC6.setBackground(Color.decode("#000000"));
+        C6.setBackground(Color.decode(("#9999FF")));
+        QC6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_C6MouseExited
 
     private void C6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C6MouseClicked
@@ -4396,8 +4396,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC6MouseEntered
 
     private void QC6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC6MouseExited
-        C6.setBackground(Color.decode(("000000")));
-        QC6.setBackground(Color.decode("#000000"));
+        C6.setBackground(Color.decode(("#9999FF")));
+        QC6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QC6MouseExited
 
     private void QC6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC6MouseClicked
@@ -4438,8 +4438,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_C8MouseEntered
 
     private void C8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C8MouseExited
-        C8.setBackground(Color.decode("#000000"));
-        QC8.setBackground(Color.decode("000000"));
+        C8.setBackground(Color.decode("#9999FF"));
+        QC8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_C8MouseExited
 
     private void C8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_C8MouseClicked
@@ -4452,8 +4452,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QC8MouseEntered
 
     private void QC8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC8MouseExited
-        C8.setBackground(Color.decode("#000000"));
-        QC8.setBackground(Color.decode("000000"));
+        C8.setBackground(Color.decode("#9999FF"));
+        QC8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QC8MouseExited
 
     private void QC8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QC8MouseClicked
@@ -4466,8 +4466,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D1MouseEntered
 
     private void D1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D1MouseExited
-        D1.setBackground(Color.decode("#000000"));
-        QD1.setBackground(Color.decode("#000000"));
+        D1.setBackground(Color.decode("#9999FF"));
+        QD1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_D1MouseExited
 
     private void D1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D1MouseClicked
@@ -4480,8 +4480,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD1MouseEntered
 
     private void QD1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD1MouseExited
-        D1.setBackground(Color.decode("#000000"));
-        QD1.setBackground(Color.decode("#000000"));
+        D1.setBackground(Color.decode("#9999FF"));
+        QD1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QD1MouseExited
 
     private void QD1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD1MouseClicked
@@ -4522,8 +4522,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D3MouseEntered
 
     private void D3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D3MouseExited
-        D3.setBackground(Color.decode("#000000"));
-        QD3.setBackground(Color.decode("#000000"));
+        D3.setBackground(Color.decode("#9999FF"));
+        QD3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_D3MouseExited
 
     private void D3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D3MouseClicked
@@ -4536,8 +4536,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD3MouseEntered
 
     private void QD3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD3MouseExited
-        D3.setBackground(Color.decode("#000000"));
-        QD3.setBackground(Color.decode("#000000"));
+        D3.setBackground(Color.decode("#9999FF"));
+        QD3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QD3MouseExited
 
     private void QD3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD3MouseClicked
@@ -4578,8 +4578,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D5MouseEntered
 
     private void D5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D5MouseExited
-        D5.setBackground(Color.decode("#000000"));
-        QD5.setBackground(Color.decode("#000000"));
+        D5.setBackground(Color.decode("#9999FF"));
+        QD5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_D5MouseExited
 
     private void D5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D5MouseClicked
@@ -4592,8 +4592,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD5MouseEntered
 
     private void QD5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD5MouseExited
-        D5.setBackground(Color.decode("#000000"));
-        QD5.setBackground(Color.decode("#000000"));
+        D5.setBackground(Color.decode("#9999FF"));
+        QD5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QD5MouseExited
 
     private void QD5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD5MouseClicked
@@ -4634,8 +4634,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_D7MouseEntered
 
     private void D7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D7MouseExited
-        D7.setBackground(Color.decode("#000000"));
-        QD7.setBackground(Color.decode("#000000"));
+        D7.setBackground(Color.decode("#9999FF"));
+        QD7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_D7MouseExited
 
     private void D7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_D7MouseClicked
@@ -4648,8 +4648,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QD7MouseEntered
 
     private void QD7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD7MouseExited
-        D7.setBackground(Color.decode("#000000"));
-        QD7.setBackground(Color.decode("#000000"));
+        D7.setBackground(Color.decode("#9999FF"));
+        QD7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QD7MouseExited
 
     private void QD7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QD7MouseClicked
@@ -4718,8 +4718,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E2MouseEntered
 
     private void E2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E2MouseExited
-        E2.setBackground(Color.decode("#000000"));
-        QE2.setBackground(Color.decode("#000000"));
+        E2.setBackground(Color.decode("#9999FF"));
+        QE2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_E2MouseExited
 
     private void E2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E2MouseClicked
@@ -4732,8 +4732,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE2MouseEntered
 
     private void QE2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE2MouseExited
-        E2.setBackground(Color.decode("#000000"));
-        QE2.setBackground(Color.decode("#000000"));
+        E2.setBackground(Color.decode("#9999FF"));
+        QE2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QE2MouseExited
 
     private void QE2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE2MouseClicked
@@ -4774,8 +4774,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E4MouseEntered
 
     private void E4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E4MouseExited
-        E4.setBackground(Color.decode("#000000"));
-        QE4.setBackground(Color.decode("#000000"));
+        E4.setBackground(Color.decode("#9999FF"));
+        QE4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_E4MouseExited
 
     private void E4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E4MouseClicked
@@ -4788,8 +4788,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE4MouseEntered
 
     private void QE4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE4MouseExited
-        E4.setBackground(Color.decode("#000000"));
-        QE4.setBackground(Color.decode("#000000"));
+        E4.setBackground(Color.decode("#9999FF"));
+        QE4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QE4MouseExited
 
     private void QE4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE4MouseClicked
@@ -4830,8 +4830,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E6MouseEntered
 
     private void E6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E6MouseExited
-        E6.setBackground(Color.decode("#000000"));
-        QE6.setBackground(Color.decode("#000000"));
+        E6.setBackground(Color.decode("#9999FF"));
+        QE6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_E6MouseExited
 
     private void E6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E6MouseClicked
@@ -4844,8 +4844,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE6MouseEntered
 
     private void QE6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE6MouseExited
-        E6.setBackground(Color.decode("#000000"));
-        QE6.setBackground(Color.decode("#000000"));
+        E6.setBackground(Color.decode("#9999FF"));
+        QE6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QE6MouseExited
 
     private void QE6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE6MouseClicked
@@ -4886,8 +4886,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_E8MouseEntered
 
     private void E8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E8MouseExited
-        E8.setBackground(Color.decode("#000000"));
-        QE8.setBackground(Color.decode("#000000"));
+        E8.setBackground(Color.decode("#9999FF"));
+        QE8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_E8MouseExited
 
     private void E8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_E8MouseClicked
@@ -4900,8 +4900,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QE8MouseEntered
 
     private void QE8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE8MouseExited
-        E8.setBackground(Color.decode("#000000"));
-        QE8.setBackground(Color.decode("#000000"));
+        E8.setBackground(Color.decode("#9999FF"));
+        QE8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QE8MouseExited
 
     private void QE8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QE8MouseClicked
@@ -4914,8 +4914,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F1MouseEntered
 
     private void F1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F1MouseExited
-        F1.setBackground(Color.decode("#000000"));
-        QF1.setBackground(Color.decode("#000000"));
+        F1.setBackground(Color.decode("#9999FF"));
+        QF1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_F1MouseExited
 
     private void F1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F1MouseClicked
@@ -4928,8 +4928,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF1MouseEntered
 
     private void QF1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF1MouseExited
-        F1.setBackground(Color.decode("#000000"));
-        QF1.setBackground(Color.decode("#000000"));
+        F1.setBackground(Color.decode("#9999FF"));
+        QF1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QF1MouseExited
 
     private void QF1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF1MouseClicked
@@ -4970,8 +4970,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F3MouseEntered
 
     private void F3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F3MouseExited
-        F3.setBackground(Color.decode("#000000"));
-        QF3.setBackground(Color.decode("#000000"));
+        F3.setBackground(Color.decode("#9999FF"));
+        QF3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_F3MouseExited
 
     private void F3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F3MouseClicked
@@ -4984,8 +4984,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF3MouseEntered
 
     private void QF3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF3MouseExited
-        F3.setBackground(Color.decode("#000000"));
-        QF3.setBackground(Color.decode("#000000"));
+        F3.setBackground(Color.decode("#9999FF"));
+        QF3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QF3MouseExited
 
     private void QF3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF3MouseClicked
@@ -5026,8 +5026,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F5MouseEntered
 
     private void F5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F5MouseExited
-        F5.setBackground(Color.decode("#000000"));
-        QF5.setBackground(Color.decode("#000000"));
+        F5.setBackground(Color.decode("#9999FF"));
+        QF5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_F5MouseExited
 
     private void F5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F5MouseClicked
@@ -5040,8 +5040,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF5MouseEntered
 
     private void QF5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF5MouseExited
-        F5.setBackground(Color.decode("#000000"));
-        QF5.setBackground(Color.decode("#000000"));
+        F5.setBackground(Color.decode("#9999FF"));
+        QF5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QF5MouseExited
 
     private void QF5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF5MouseClicked
@@ -5082,8 +5082,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_F7MouseEntered
 
     private void F7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F7MouseExited
-        F7.setBackground(Color.decode("#000000"));
-        QF7.setBackground(Color.decode("#000000"));
+        F7.setBackground(Color.decode("#9999FF"));
+        QF7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_F7MouseExited
 
     private void F7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_F7MouseClicked
@@ -5096,8 +5096,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QF7MouseEntered
 
     private void QF7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF7MouseExited
-        F7.setBackground(Color.decode("#000000"));
-        QF7.setBackground(Color.decode("#000000"));
+        F7.setBackground(Color.decode("#9999FF"));
+        QF7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QF7MouseExited
 
     private void QF7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QF7MouseClicked
@@ -5166,8 +5166,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G2MouseEntered
 
     private void G2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2MouseExited
-        G2.setBackground(Color.decode("#000000"));
-        QG2.setBackground(Color.decode("#000000"));
+        G2.setBackground(Color.decode("#9999FF"));
+        QG2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_G2MouseExited
 
     private void G2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G2MouseClicked
@@ -5180,8 +5180,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG2MouseEntered
 
     private void QG2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG2MouseExited
-        G2.setBackground(Color.decode("#000000"));
-        QG2.setBackground(Color.decode("#000000"));
+        G2.setBackground(Color.decode("#9999FF"));
+        QG2.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QG2MouseExited
 
     private void QG2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG2MouseClicked
@@ -5222,8 +5222,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G4MouseEntered
 
     private void G4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G4MouseExited
-        G4.setBackground(Color.decode("#000000"));
-        QG4.setBackground(Color.decode("#000000"));
+        G4.setBackground(Color.decode("#9999FF"));
+        QG4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_G4MouseExited
 
     private void G4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G4MouseClicked
@@ -5236,8 +5236,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG4MouseEntered
 
     private void QG4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG4MouseExited
-        G4.setBackground(Color.decode("#000000"));
-        QG4.setBackground(Color.decode("#000000"));
+        G4.setBackground(Color.decode("#9999FF"));
+        QG4.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QG4MouseExited
 
     private void QG4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG4MouseClicked
@@ -5278,8 +5278,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G6MouseEntered
 
     private void G6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G6MouseExited
-        G6.setBackground(Color.decode("#000000"));
-        QG6.setBackground(Color.decode("#000000"));
+        G6.setBackground(Color.decode("#9999FF"));
+        QG6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_G6MouseExited
 
     private void G6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G6MouseClicked
@@ -5292,8 +5292,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG6MouseEntered
 
     private void QG6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG6MouseExited
-        G6.setBackground(Color.decode("#000000"));
-        QG6.setBackground(Color.decode("#000000"));
+        G6.setBackground(Color.decode("#9999FF"));
+        QG6.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QG6MouseExited
 
     private void QG6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG6MouseClicked
@@ -5334,8 +5334,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_G8MouseEntered
 
     private void G8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G8MouseExited
-        G8.setBackground(Color.decode("#000000"));
-        QG8.setBackground(Color.decode("#000000"));
+        G8.setBackground(Color.decode("#9999FF"));
+        QG8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_G8MouseExited
 
     private void G8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_G8MouseClicked
@@ -5348,8 +5348,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QG8MouseEntered
 
     private void QG8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG8MouseExited
-        G8.setBackground(Color.decode("#000000"));
-        QG8.setBackground(Color.decode("#000000"));
+        G8.setBackground(Color.decode("#9999FF"));
+        QG8.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QG8MouseExited
 
     private void QG8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QG8MouseClicked
@@ -5362,8 +5362,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H1MouseEntered
 
     private void H1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H1MouseExited
-        H1.setBackground(Color.decode("#000000"));
-        QH1.setBackground(Color.decode("#000000"));
+        H1.setBackground(Color.decode("#9999FF"));
+        QH1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_H1MouseExited
 
     private void H1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H1MouseClicked
@@ -5376,8 +5376,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH1MouseEntered
 
     private void QH1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH1MouseExited
-        H1.setBackground(Color.decode("#000000"));
-        QH1.setBackground(Color.decode("#000000"));
+        H1.setBackground(Color.decode("#9999FF"));
+        QH1.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QH1MouseExited
 
     private void QH1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH1MouseClicked
@@ -5418,8 +5418,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H3MouseEntered
 
     private void H3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H3MouseExited
-        H3.setBackground(Color.decode("#000000"));
-        QH3.setBackground(Color.decode("#000000"));
+        H3.setBackground(Color.decode("#9999FF"));
+        QH3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_H3MouseExited
 
     private void H3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H3MouseClicked
@@ -5432,8 +5432,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH3MouseEntered
 
     private void QH3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH3MouseExited
-        H3.setBackground(Color.decode("#000000"));
-        QH3.setBackground(Color.decode("#000000"));
+        H3.setBackground(Color.decode("#9999FF"));
+        QH3.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QH3MouseExited
 
     private void QH3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH3MouseClicked
@@ -5474,8 +5474,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H5MouseEntered
 
     private void H5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H5MouseExited
-        H5.setBackground(Color.decode("#000000"));
-        QH5.setBackground(Color.decode("#000000"));
+        H5.setBackground(Color.decode("#9999FF"));
+        QH5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_H5MouseExited
 
     private void H5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H5MouseClicked
@@ -5488,8 +5488,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH5MouseEntered
 
     private void QH5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH5MouseExited
-        H5.setBackground(Color.decode("#000000"));
-        QH5.setBackground(Color.decode("#000000"));
+        H5.setBackground(Color.decode("#9999FF"));
+        QH5.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QH5MouseExited
 
     private void QH5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH5MouseClicked
@@ -5530,8 +5530,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_H7MouseEntered
 
     private void H7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H7MouseExited
-        H7.setBackground(Color.decode("#000000"));
-        QH7.setBackground(Color.decode("#000000"));
+        H7.setBackground(Color.decode("#9999FF"));
+        QH7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_H7MouseExited
 
     private void H7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_H7MouseClicked
@@ -5544,8 +5544,8 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_QH7MouseEntered
 
     private void QH7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH7MouseExited
-        H7.setBackground(Color.decode("#000000"));
-        QH7.setBackground(Color.decode("#000000"));
+        H7.setBackground(Color.decode("#9999FF"));
+        QH7.setBackground(Color.decode("#9999FF"));
     }//GEN-LAST:event_QH7MouseExited
 
     private void QH7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QH7MouseClicked

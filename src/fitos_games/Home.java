@@ -6,7 +6,8 @@ package fitos_games;
 
 import EightQueenPuzzle.View.EightQueens;
 import Huffman.View.HuffmanMenu;
-import IdentifyMinimumConnecters.View.IdentifyMinimumConnectorsGame;
+import IdentifyMinimumConnecters.View.IdentifyMinimumConnectersGame;
+import IdentifyMinimumConnecters.View.IdentifyShortestPathGame;
 import TicTacToe.View.TicTacToe;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -312,6 +313,9 @@ public class Home extends javax.swing.JFrame {
         Game4PlayBtn.setRoundTopLeft(30);
         Game4PlayBtn.setRoundTopRight(30);
         Game4PlayBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Game4PlayBtnMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 Game4PlayBtnMouseEntered(evt);
             }
@@ -597,11 +601,19 @@ public class Home extends javax.swing.JFrame {
 
     private void Game5PlayBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Game5PlayBtnMouseClicked
         // TODO add your handling code here:
-        IdentifyMinimumConnecters.View.IdentifyMinimumConnectorsGame icm = new IdentifyMinimumConnectorsGame();
+        IdentifyMinimumConnectersGame icm = new IdentifyMinimumConnectersGame();
         icm.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_Game5PlayBtnMouseClicked
+
+    private void Game4PlayBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Game4PlayBtnMouseClicked
+        // TODO add your handling code here:
+                IdentifyShortestPathGame isp = new IdentifyShortestPathGame();
+                isp.setVisible(true);
+                this.dispose();
+
+    }//GEN-LAST:event_Game4PlayBtnMouseClicked
 
     
     
