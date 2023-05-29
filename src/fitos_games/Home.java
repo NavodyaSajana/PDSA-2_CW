@@ -7,7 +7,7 @@ package fitos_games;
 import EightQueenPuzzle.View.EightQueens;
 import Huffman.View.HuffmanMenu;
 import IdentifyMinimumConnecters.View.IdentifyMinimumConnectersGame;
-import IdentifyMinimumConnecters.View.IdentifyShortestPathGame;
+import IdentifyShortestPath.View.IdentifyShortestPathGame;
 import TicTacToe.View.TicTacToe;
 import java.awt.Color;
 import java.awt.Cursor;
