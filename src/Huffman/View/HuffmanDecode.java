@@ -212,7 +212,7 @@ public class HuffmanDecode extends javax.swing.JFrame {
     private void btnEncodeToStringSeeAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEncodeToStringSeeAnswerMouseClicked
         JOptionPane.showMessageDialog(this, cutText);
         
-        HuffmanEncode he = new HuffmanEncode();
+        HuffmanDecode he = new HuffmanDecode();
         he.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEncodeToStringSeeAnswerMouseClicked
