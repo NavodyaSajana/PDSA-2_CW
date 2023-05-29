@@ -73,17 +73,20 @@ public class EightQueens extends javax.swing.JFrame {
     }
 
     public void showQueen(LableRound queen) {
-        ImageIcon icon = new ImageIcon("src/images/Queen.png");
-        Image img = icon.getImage();
-        Image imgScale = img.getScaledInstance(queen.getWidth(), queen.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon ScaledIcon = new ImageIcon(imgScale);
-        queen.setIcon(ScaledIcon);
-        if (queenCount != 0) {
-            queenCount -= 1;
-            availableQueens.setText("" + queenCount);
-        } else {
-            JOptionPane.showMessageDialog(this, "Maximum Numer of Queens are used...", "Sorry...", JOptionPane.WARNING_MESSAGE);
-            hideQueen(queen, true);
+        if (queen.getIcon() == null) {
+            ImageIcon icon = new ImageIcon("src/images/Queen.png");
+            Image img = icon.getImage();
+            Image imgScale = img.getScaledInstance(queen.getWidth(), queen.getHeight(), Image.SCALE_SMOOTH);
+            ImageIcon ScaledIcon = new ImageIcon(imgScale);
+            queen.setIcon(ScaledIcon);
+            if (queenCount != 0) {
+                queenCount -= 1;
+                availableQueens.setText("" + queenCount);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Maximum Numer of Queens are used...", "Sorry...", JOptionPane.WARNING_MESSAGE);
+                hideQueen(queen, true);
+            }
         }
     }
 
@@ -5612,10 +5615,10 @@ public class EightQueens extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitMouseClicked
 
     private void btnCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckMouseClicked
-        if(queenCount==0)
+        if (queenCount == 0)
             checkPattern();
         else
-            JOptionPane.showMessageDialog(this, "There are "+queenCount+" Queens waiting at the lobby","Check...",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "There are " + queenCount + " Queens waiting at the lobby", "Check...", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btnCheckMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

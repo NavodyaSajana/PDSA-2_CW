@@ -15,7 +15,7 @@ public class IdentifyMinimumConnectersModel {
     Database db = new Database();
 
     public boolean insertPlayer(String playerName, String correctResults) throws SQLException {
-        return db.insertDeleteUpdate_Data("insert into IdentifyMinimumConnectersWinner ('playerName','Map') values ('"+playerName+"','"+correctResults+"')");
+        return db.insertDeleteUpdate_Data("insert into minimumconnecters values (NULL,'"+playerName+"','"+correctResults+"')");
     }
     
     

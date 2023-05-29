@@ -32,58 +32,62 @@ public class IdentifyMinimumConnectersController {
         Vertex h = new Vertex("H");
         Vertex i = new Vertex("I");
         Vertex j = new Vertex("J");
+        
+        for(int c1=0;c1<distance.length;c1++){
+            System.out.println(""+distance[c1]);
+        }
 
         Edge ai = new Edge(distance[0]);
         a.addEdge(i, ai);
         i.addEdge(a, ai);
-
-        Edge ae = new Edge(distance[1]);
+        
+        Edge di = new Edge(distance[1]);
+        d.addEdge(i, di);
+        i.addEdge(d, di);
+        
+        Edge ae = new Edge(distance[2]);
         a.addEdge(e, ae);
         e.addEdge(a, ae);
-
-        Edge eg = new Edge(distance[2]);
-        e.addEdge(g, eg);
-        g.addEdge(e, eg);
-
-        Edge gb = new Edge(distance[3]);
-        g.addEdge(b, gb);
-        b.addEdge(g, gb);
-
-        Edge bc = new Edge(distance[4]);
-        b.addEdge(c, bc);
-        c.addEdge(b, bc);
-
-        Edge ch = new Edge(distance[5]);
-        c.addEdge(h, ch);
-        h.addEdge(c, ch);
-
+        
+        Edge ef = new Edge(distance[3]);
+        e.addEdge(f, ef);
+        f.addEdge(e, ef);
+        
+        Edge fj = new Edge(distance[4]);
+        f.addEdge(j, fj);
+        j.addEdge(f, fj);
+        
+        Edge dj = new Edge(distance[5]);
+        d.addEdge(j, dj);
+        j.addEdge(d, dj);
+        
         Edge hj = new Edge(distance[6]);
         h.addEdge(j, hj);
         j.addEdge(h, hj);
-
-        Edge dj = new Edge(distance[7]);
-        d.addEdge(j, dj);
-        j.addEdge(d, dj);
-
-        Edge di = new Edge(distance[8]);
-        d.addEdge(i, di);
-        i.addEdge(d, di);
-
-        Edge ij = new Edge(distance[9]);
-        i.addEdge(j, ij);
-        j.addEdge(i, ij);
-
-        Edge ef = new Edge(distance[10]);
-        e.addEdge(f, ef);
-        f.addEdge(e, ef);
-
-        Edge fj = new Edge(distance[11]);
-        f.addEdge(j, fj);
-        j.addEdge(f, fj);
-
-        Edge fb = new Edge(distance[12]);
+        
+        Edge fb = new Edge(distance[7]);
         f.addEdge(b, fb);
         b.addEdge(f, fb);
+        
+        Edge eg = new Edge(distance[8]);
+        e.addEdge(g, eg);
+        g.addEdge(e, eg);
+        
+        Edge gb = new Edge(distance[9]);
+        g.addEdge(b, gb);
+        b.addEdge(g, gb);
+
+        Edge bc = new Edge(distance[10]);
+        b.addEdge(c, bc);
+        c.addEdge(b, bc);
+        
+        Edge ch = new Edge(distance[11]);
+        c.addEdge(h, ch);
+        h.addEdge(c, ch);
+        
+        Edge ij = new Edge(distance[12]);
+        i.addEdge(j, ij);
+        j.addEdge(i, ij);
 
         graph.add(a);
         graph.add(b);
@@ -137,7 +141,7 @@ public class IdentifyMinimumConnectersController {
             }
             if(CASES_PASSED==0){
                 RESULT_OUTPUT="PS";
-                map = correctMap;
+                userValues = correctMap;
             }else{
                 RESULT_OUTPUT="FA";
             }

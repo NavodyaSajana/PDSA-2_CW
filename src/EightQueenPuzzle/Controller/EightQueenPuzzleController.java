@@ -125,37 +125,7 @@ public class EightQueenPuzzleController {
         }
         return isSuccess;
     }
-
-    /*private String getUserDetails() {
-        //this below is to test the codes this will be changes after adding the view
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter Your Name : ");
-        String playerName = in.nextLine();
-
-        return playerName;
-    }*/
-//    public void deletePlayerData(int patternID){
-//        try{
-//            ResultSet rs = model.getGamePlayData(patternID);
-//            if(rs.isBeforeFirst()){
-//                //resultset not niull
-//                while(rs.next()){
-//                    int gamePlayID = rs.getInt(1);
-//                    boolean isSuccess = model.deletePlayer(gamePlayID);
-//                    if(isSuccess){
-//                        System.out.println("Data has been successfully deleted.");
-//                    } else{
-//                        System.out.println("Something went wrong while deleting the data.");
-//                    }
-//                }
-//            } else{
-//                //resultset null
-//                 System.out.println("No player data found for the given pattern ID.");
-//            }
-//        }catch(SQLException ex){
-//        System.out.println(ex);
-//        }
-//    }
+    
     public int getTotPatterns() throws SQLException {
         ResultSet rs = model.getTotPatterns();
         int tot = 0;
