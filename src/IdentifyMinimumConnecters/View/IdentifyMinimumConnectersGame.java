@@ -4,6 +4,7 @@
  */
 package IdentifyMinimumConnecters.View;
 
+import IdentifyMinimumConnecters.Controller.IdentifyMinimumConnectersController;
 import fitos_games.Home;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -12,9 +13,13 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Stroke;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
-
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,9 +33,9 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
     public IdentifyMinimumConnectersGame() {
         initComponents();
         this.setTitle("Identify minimum connecters Game");
-  
-         hideDistance();
-         String textValue = "500KM";
+
+        hideDistance();
+        /*String textValue = "500KM";
          AtoB.setText(textValue);
          AtoC.setText(textValue);
          AtoD.setText(textValue);
@@ -84,1563 +89,1592 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
          HtoJ.setText(textValue);
          
          HtoI.setText(textValue);
+         ItoJ.setText(textValue);*/
+
+        setDistance();
 
     }
-    
- 
-    public void hideDistance(){
-            
-        /*AtoB.setVisible(false);
+
+    IdentifyMinimumConnectersController ctrl = new IdentifyMinimumConnectersController();
+
+    private int[] values = new int[13];
+
+    private void setDistance() {
+        IdentifyMinimumConnectersController random = new IdentifyMinimumConnectersController();
+        for (int c = 0; c < values.length; c++) {
+            values[c] = random.generateRandom();
+        }
+
+        AtoI.setText("" + values[0] + "KM");
+        DtoI.setText("" + values[1] + "KM");
+        AtoE.setText("" + values[2] + "KM");
+        EtoF.setText("" + values[3] + "KM");
+        FtoJ.setText("" + values[4] + "KM");
+        DtoJ.setText("" + values[5] + "KM");
+        HtoJ.setText("" + values[6] + "KM");
+        BtoF.setText("" + values[7] + "KM");
+        EtoG.setText("" + values[8] + "KM");
+        BtoG.setText("" + values[9] + "KM");
+        BtoC.setText("" + values[10] + "KM");
+        CtoH.setText("" + values[11] + "KM");
+        ItoJ.setText("" + values[12] + "KM");
+    }
+
+    public void hideDistance() {
+
+        AtoB.setVisible(false);
         AtoC.setVisible(false);
         AtoD.setVisible(false);
-        AtoE.setVisible(false);
+        //AtoE.setVisible(false);
         AtoF.setVisible(false);
         AtoG.setVisible(false);
         AtoH.setVisible(false);
-        AtoI.setVisible(false);
+        //AtoI.setVisible(false);
         AtoJ.setVisible(false);
-        
-        BtoC.setVisible(false);
+
+        //BtoC.setVisible(false);
         BtoD.setVisible(false);
         BtoE.setVisible(false);
-        BtoF.setVisible(false);
-        BtoG.setVisible(false);
+        //BtoF.setVisible(false);
+        //BtoG.setVisible(false);
         BtoH.setVisible(false);
         BtoI.setVisible(false);
         BtoJ.setVisible(false);
-        
+
         CtoD.setVisible(false);
         CtoE.setVisible(false);
         CtoF.setVisible(false);
         CtoG.setVisible(false);
-        CtoH.setVisible(false);
+        //CtoH.setVisible(false);
         CtoI.setVisible(false);
         CtoJ.setVisible(false);
-        
+
         DtoE.setVisible(false);
         DtoF.setVisible(false);
         DtoG.setVisible(false);
         DtoH.setVisible(false);
-        DtoI.setVisible(false);
-        DtoJ.setVisible(false);
-        
-        EtoF.setVisible(false);
-        EtoG.setVisible(false);
+        //DtoI.setVisible(false);
+        //DtoJ.setVisible(false);
+
+        //EtoF.setVisible(false);
+        //EtoG.setVisible(false);
         EtoH.setVisible(false);
         EtoI.setVisible(false);
         EtoJ.setVisible(false);
-        
+
         FtoG.setVisible(false);
         FtoH.setVisible(false);
         FtoI.setVisible(false);
-        FtoJ.setVisible(false);
-        
+        //FtoJ.setVisible(false);
+
         GtoH.setVisible(false);
         GtoI.setVisible(false);
         GtoJ.setVisible(false);
-        
+
         HtoI.setVisible(false);
-        HtoJ.setVisible(false);
-        
-        ItoJ.setVisible(false);*/
+        //HtoJ.setVisible(false);
+
+        //ItoJ.setVisible(false);
+    }
+
+    class AtoB extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
         }
- 
-    class AtoB extends JLabel{
-        private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX() + 69;
-        int y1 = CityA.getY() + 48;
-        int x2 = CityB.getX();
-        int y2 = CityB.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityB.getX();
+            int y2 = CityB.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
- 
-            
-        }      
+        }
     }
-  
-    class AtoC extends JLabel{   
+
+    class AtoC extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX() + 69;
-        int y1 = CityA.getY() + 48;
-        int x2 = CityB.getX();
-        int y2 = CityB.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
-    }
-    
-    class AtoD extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityD.getX();
-        int y2 = CityD.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityB.getX();
+            int y2 = CityB.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-        }      
+        }
     }
- 
-    class AtoE extends JLabel{
+
+    class AtoD extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-         @Override
-        protected void paintComponent(Graphics g) {
-              super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityE.getX()+30;
-        int y2 = CityE.getY()-10;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
- 
-            
-        }      
-    }
-    
-    class AtoF extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityF.getX();
-        int y2 = CityF.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityD.getX();
+            int y2 = CityD.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+        }
+    }
 
-            
-        }      
-    } 
-    
-    class AtoG extends JLabel{       
+    class AtoE extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityG.getX()+20;
-        int y2 = CityG.getY()-10;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
- 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    }
-    
-    class AtoH extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityH.getX();
-        int y2 = CityH.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityE.getX() + 30;
+            int y2 = CityE.getY() - 10;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+        }
+    }
 
-            
-        }      
-    }     
-    
-    class AtoI extends JLabel{  
+    class AtoF extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityI.getX()-10;
-        int y2 =CityI.getY()+25;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    }
-    
-    class AtoJ extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-              super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.blue);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityA.getX()+69;
-        int y1 = CityA.getY()+48;
-        int x2 = CityJ.getX();
-        int y2 = CityJ.getY();
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    }
-    
-      class BtoC extends JLabel{   
-          private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityC.getX();
-        int y2 = CityC.getY()+16;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityF.getX();
+            int y2 = CityF.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
-
-            
-        }      
+        }
     }
-    
-    class BtoD extends JLabel{
+
+    class AtoG extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-                 super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityD.getX();
-        int y2 = CityD.getY()+60;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
-  
-            
-        }      
-    }
- 
-    class BtoE extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-         @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityE.getX()+60;
-        int y2 = CityE.getY()+48;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
- 
-            
-        }      
-    }
-    
-    class BtoF extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityF.getX()+20;
-        int y2 = CityF.getY()+48;
-        g2d.drawLine(x1, y1, x2, y2);
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
-
-            
-        }      
-    } 
-    
-    class BtoG extends JLabel{       
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityG.getX()+78;
-        int y2 = CityG.getY()+35;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
-  
-            
-        }      
-    }
-    
-    class BtoH extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityH.getX();
-        int y2 = CityH.getY()+20;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityG.getX() + 20;
+            int y2 = CityG.getY() - 10;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
-            g2d.drawLine(CityB.getX(),CityB.getY(),CityH.getX(),CityH.getY()+20);    
-            
-        }      
-    }     
-    
-    class BtoI extends JLabel{  
+        }
+    }
+
+    class AtoH extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityI.getX();
-        int y2 = CityI.getY()+48;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
- 
-            
-        }      
-    }
-    
-    class BtoJ extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.red);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityB.getX();
-        int y1 = CityB.getY();
-        int x2 = CityJ.getX();
-        int y2 = CityJ.getY()+60;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityH.getX();
+            int y2 = CityH.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
- 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY);
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-            
-        }      
+        }
     }
-         
-    
-     class CtoD extends JLabel{
-         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    class AtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityD.getX();
-        int y2 = CityD.getY()+60;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityI.getX() - 10;
+            int y2 = CityI.getY() + 25;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
+        }
     }
- 
-    class CtoE extends JLabel{
+
+    class AtoJ extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-         @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityE.getX()+60;
-        int y2 = CityE.getY()+48;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    }
-    
-    class CtoF extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityF.getX()+20;
-        int y2 = CityF.getY()+48;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    } 
-    
-    class CtoG extends JLabel{       
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-              super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityG.getX()+80;
-        int y2 = CityG.getY()+25;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
-    }
-    
-    class CtoH extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityH.getX();
-        int y2 = CityH.getY()+20;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.blue);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityA.getX() + 69;
+            int y1 = CityA.getY() + 48;
+            int x2 = CityJ.getX();
+            int y2 = CityJ.getY();
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+        }
+    }
 
-            
-        }      
-    }     
-    
-    class CtoI extends JLabel{  
+    class BtoC extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityI.getX()+40;
-        int y2 = CityI.getY()+52;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityC.getX();
+            int y2 = CityC.getY() + 16;
+            g2d.drawLine(x1, y1, x2, y2);
 
-    
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-  
-            
-        }      
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
     }
-    
-    class CtoJ extends JLabel{  
+
+    class BtoD extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.yellow);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityC.getX();
-        int y1 = CityC.getY();
-        int x2 = CityJ.getX()+50;
-        int y2 = CityJ.getY()+60;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityD.getX();
+            int y2 = CityD.getY() + 60;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
+        }
     }
-    
-    
-    class DtoE extends JLabel{
+
+    class BtoE extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-         @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityD.getX()-400;
-        int y2 = CityD.getY()-58;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            g2d.drawLine(CityD.getX()-400,CityD.getY()-58,CityE.getX()+60,CityE.getY()+10);    
-            
-            
-        }      
-    }
-    
-    class DtoF extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityD.getX()-350;
-        int y2 = CityD.getY()-18;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            g2d.drawLine(CityD.getX()-350,CityD.getY()-18,CityF.getX()+65,CityF.getY());    
-            
-        }      
-    } 
-    
-    class DtoG extends JLabel{       
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityG.getX()+80;
-        int y2 = CityG.getY()+25;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityE.getX() + 60;
+            int y2 = CityE.getY() + 48;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
+        }
     }
-    
-    class DtoH extends JLabel{
+
+    class BtoF extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityD.getX()-80;
-        int y2 = CityD.getY()+100;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityF.getX() + 20;
+            int y2 = CityF.getY() + 48;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+        }
+    }
 
-            g2d.drawLine(CityD.getX()-80,CityD.getY()+100,CityH.getX(),CityH.getY());   
-            
-        }      
-    }     
-    
-    class DtoI extends JLabel{  
+    class BtoG extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityI.getX()+40;
-        int y2 = CityI.getY()+52;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityG.getX() + 78;
+            int y2 = CityG.getY() + 35;
+            g2d.drawLine(x1, y1, x2, y2);
 
-   
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-            
-        }      
+        }
     }
-    
-    class DtoJ extends JLabel{  
+
+    class BtoH extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-              super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.pink);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityD.getX();
-        int y1 = CityD.getY();
-        int x2 = CityJ.getX()+65;
-        int y2 = CityJ.getY()+10;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-  
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-        }      
-    }
-    
-    class EtoF extends JLabel{
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityE.getX()+75;
-        int y1 = CityE.getY()+45;
-        int x2 = CityF.getX()-10;
-        int y2 =  CityF.getY()+30;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityH.getX();
+            int y2 = CityH.getY() + 20;
+            g2d.drawLine(x1, y1, x2, y2);
 
- 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+            g2d.drawLine(CityB.getX(), CityB.getY(), CityH.getX(), CityH.getY() + 20);
 
-            
-            
-        }      
-    } 
-    
-    class EtoG extends JLabel{       
+        }
+    }
+
+    class BtoI extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityE.getX()+75;
-        int y1 = CityE.getY()+45;
-        int x2 = CityG.getX()+80;
-        int y2 = CityG.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityI.getX();
+            int y2 = CityI.getY() + 48;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
+        }
     }
-    
-    class EtoH extends JLabel{
+
+    class BtoJ extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityE.getX()+75;
-        int y1 = CityE.getY()+45;
-        int x2 = CityH.getX()-10;
-        int y2 = CityH.getY()+20;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.red);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityB.getX();
+            int y1 = CityB.getY();
+            int x2 = CityJ.getX();
+            int y2 = CityJ.getY() + 60;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
-    }     
-    
-    class EtoI extends JLabel{  
+        }
+    }
+
+    class CtoD extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityE.getX()+75;
-        int y1 = CityE.getY()+45;
-        int x2 = CityI.getX();
-        int y2 = CityI.getY()+52;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-        }      
-    }
-    
-    class EtoJ extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.black);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityE.getX()+75;
-        int y1 = CityE.getY()+45;
-        int x2 = CityE.getX()+400;
-        int y2 =CityE.getY()-140;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityD.getX();
+            int y2 = CityD.getY() + 60;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            g2d.drawLine(x2, y2,CityJ.getX(),CityJ.getY()+20);  
-            
-        }      
+        }
     }
-    
-    class FtoG extends JLabel{       
+
+    class CtoE extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.ORANGE);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityF.getX()+75;
-        int y1 = CityF.getY()+25;
-        int x2 = CityF.getX()+120;
-        int y2 = CityF.getY()+100;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityE.getX() + 60;
+            int y2 = CityE.getY() + 48;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            g2d.drawLine(x2, y2,CityG.getX()+80,CityG.getY());    
-            
-        }      
+        }
     }
-    
-    class FtoH extends JLabel{
+
+    class CtoF extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-           super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.ORANGE);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityF.getX()+75;
-        int y1 = CityF.getY()+25;
-        int x2 = CityH.getX()-10;
-        int y2 = CityH.getY()+20;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            g2d.drawLine(x2, y2,CityH.getX()-10,CityH.getY()+20);    
-            
-            
-        }      
-    }     
-    
-    class FtoI extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.ORANGE);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityF.getX()+75;
-        int y1 = CityF.getY()+25;
-        int x2 = CityI.getX();
-        int y2 = CityI.getY()+52;
-        g2d.drawLine(x1, y1, x2, y2);
-
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
- 
-            
-        }      
-    }
-    
-    class FtoJ extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.ORANGE);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityF.getX()+75;
-        int y1 = CityF.getY()+25;
-        int x2 = CityJ.getX();
-        int y2 = CityJ.getY()+45;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityF.getX() + 20;
+            int y2 = CityF.getY() + 48;
+            g2d.drawLine(x1, y1, x2, y2);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
- 
-            
-            
-        }      
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
     }
-    
-    class GtoH extends JLabel{
+
+    class CtoG extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.CYAN);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityG.getX()+75;
-        int y1 = CityG.getY()+25;
-        int x2 = CityH.getX()-10;
-        int y2 = CityH.getY()+20;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityG.getX() + 80;
+            int y2 = CityG.getY() + 25;
+            g2d.drawLine(x1, y1, x2, y2);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
-    }     
-    
-    class GtoI extends JLabel{  
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class CtoH extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.CYAN);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityG.getX()+75;
-        int y1 = CityG.getY()+25;
-        int x2 = CityG.getX()+350;
-        int y2 = CityG.getY()-350;
-        g2d.drawLine(x1, y1, x2, y2);
+        public void setText(String text) {
+            this.text = text;
+        }
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            g2d.drawLine(x2, y2,CityI.getX(),CityI.getY()+52);    
-            
-        }      
-    }
-    
-    class GtoJ extends JLabel{  
-        private String text;
-
-    public void setText(String text) {
-        this.text = text;
-    }
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.CYAN);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityG.getX()+75;
-        int y1 = CityG.getY()+25;
-        int x2 = CityJ.getX();
-        int y2 = CityJ.getY()+45;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityH.getX();
+            int y2 = CityH.getY() + 20;
+            g2d.drawLine(x1, y1, x2, y2);
 
- 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
     }
-    
-     class HtoI extends JLabel{  
-         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.MAGENTA);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityH.getX();
-        int y1 = CityH.getY();
-        int x2 = CityI.getX()+35;
-        int y2 = CityI.getY()+50;
-        g2d.drawLine(x1, y1, x2, y2);
+    class CtoI extends JLabel {
 
-
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-
-            
-        }      
-    }
-    
-    class HtoJ extends JLabel{  
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.MAGENTA);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityH.getX();
-        int y1 = CityH.getY();
-        int x2 = CityJ.getX()+35;
-        int y2 = CityJ.getY()+50;
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityI.getX() + 40;
+            int y2 = CityI.getY() + 52;
+            g2d.drawLine(x1, y1, x2, y2);
 
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
 
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-
-            
-            
-        }      
+        }
     }
-    
-    class ItoJ extends JLabel{  
+
+    class CtoJ extends JLabel {
+
         private String text;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+        public void setText(String text) {
+            this.text = text;
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(Color.gray);
-        Stroke stroke = new BasicStroke(2f);
-        g2d.setStroke(stroke);
-        int x1 = CityI.getX()+15;
-        int y1 = CityI.getY()+50;
-        int x2 = CityJ.getX()+35;
-        int y2 = CityJ.getY();
-        g2d.drawLine(x1, y1, x2, y2);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.yellow);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityC.getX();
+            int y1 = CityC.getY();
+            int x2 = CityJ.getX() + 50;
+            int y2 = CityJ.getY() + 60;
+            g2d.drawLine(x1, y1, x2, y2);
 
-        
-        Font font = new Font("Arial", Font.PLAIN, 12);
-        g2d.setFont(font);
-        FontMetrics fontMetrics = g2d.getFontMetrics();
-        int textWidth = fontMetrics.stringWidth(text);
-        int textHeight = fontMetrics.getHeight();
-        int textX = (x1 + x2 - textWidth) / 2;
-        int textY = (y1 + y2 + textHeight) / 2;
-        g2d.drawString(text, textX, textY); 
-            
-            
-        }      
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
     }
 
+    class DtoE extends JLabel {
 
-    
-    
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityD.getX() - 400;
+            int y2 = CityD.getY() - 58;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+            g2d.drawLine(CityD.getX() - 400, CityD.getY() - 58, CityE.getX() + 60, CityE.getY() + 10);
+
+        }
+    }
+
+    class DtoF extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityD.getX() - 350;
+            int y2 = CityD.getY() - 18;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+            g2d.drawLine(CityD.getX() - 350, CityD.getY() - 18, CityF.getX() + 65, CityF.getY());
+
+        }
+    }
+
+    class DtoG extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityG.getX() + 80;
+            int y2 = CityG.getY() + 25;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class DtoH extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityD.getX() - 80;
+            int y2 = CityD.getY() + 100;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+            g2d.drawLine(CityD.getX() - 80, CityD.getY() + 100, CityH.getX(), CityH.getY());
+
+        }
+    }
+
+    class DtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityI.getX() + 40;
+            int y2 = CityI.getY() + 52;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class DtoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.pink);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityD.getX();
+            int y1 = CityD.getY();
+            int x2 = CityJ.getX() + 65;
+            int y2 = CityJ.getY() + 10;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class EtoF extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.black);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityE.getX() + 75;
+            int y1 = CityE.getY() + 45;
+            int x2 = CityF.getX() - 10;
+            int y2 = CityF.getY() + 30;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class EtoG extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.black);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityE.getX() + 75;
+            int y1 = CityE.getY() + 45;
+            int x2 = CityG.getX() + 80;
+            int y2 = CityG.getY();
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class EtoH extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.black);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityE.getX() + 75;
+            int y1 = CityE.getY() + 45;
+            int x2 = CityH.getX() - 10;
+            int y2 = CityH.getY() + 20;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class EtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.black);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityE.getX() + 75;
+            int y1 = CityE.getY() + 45;
+            int x2 = CityI.getX();
+            int y2 = CityI.getY() + 52;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class EtoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.black);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityE.getX() + 75;
+            int y1 = CityE.getY() + 45;
+            int x2 = CityE.getX() + 400;
+            int y2 = CityE.getY() - 140;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+            g2d.drawLine(x2, y2, CityJ.getX(), CityJ.getY() + 20);
+
+        }
+    }
+
+    class FtoG extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.ORANGE);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityF.getX() + 75;
+            int y1 = CityF.getY() + 25;
+            int x2 = CityF.getX() + 120;
+            int y2 = CityF.getY() + 100;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+            g2d.drawLine(x2, y2, CityG.getX() + 80, CityG.getY());
+
+        }
+    }
+
+    class FtoH extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.ORANGE);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityF.getX() + 75;
+            int y1 = CityF.getY() + 25;
+            int x2 = CityH.getX() - 10;
+            int y2 = CityH.getY() + 20;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+            g2d.drawLine(x2, y2, CityH.getX() - 10, CityH.getY() + 20);
+
+        }
+    }
+
+    class FtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.ORANGE);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityF.getX() + 75;
+            int y1 = CityF.getY() + 25;
+            int x2 = CityI.getX();
+            int y2 = CityI.getY() + 52;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class FtoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.ORANGE);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityF.getX() + 75;
+            int y1 = CityF.getY() + 25;
+            int x2 = CityJ.getX();
+            int y2 = CityJ.getY() + 45;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class GtoH extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.CYAN);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityG.getX() + 75;
+            int y1 = CityG.getY() + 25;
+            int x2 = CityH.getX() - 10;
+            int y2 = CityH.getY() + 20;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class GtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.CYAN);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityG.getX() + 75;
+            int y1 = CityG.getY() + 25;
+            int x2 = CityG.getX() + 350;
+            int y2 = CityG.getY() - 350;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+            g2d.drawLine(x2, y2, CityI.getX(), CityI.getY() + 52);
+
+        }
+    }
+
+    class GtoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.CYAN);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityG.getX() + 75;
+            int y1 = CityG.getY() + 25;
+            int x2 = CityJ.getX();
+            int y2 = CityJ.getY() + 45;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class HtoI extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.MAGENTA);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityH.getX();
+            int y1 = CityH.getY();
+            int x2 = CityI.getX() + 35;
+            int y2 = CityI.getY() + 50;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class HtoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.MAGENTA);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityH.getX();
+            int y1 = CityH.getY();
+            int x2 = CityJ.getX() + 35;
+            int y2 = CityJ.getY() + 50;
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
+    class ItoJ extends JLabel {
+
+        private String text;
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setColor(Color.gray);
+            Stroke stroke = new BasicStroke(2f);
+            g2d.setStroke(stroke);
+            int x1 = CityI.getX() + 15;
+            int y1 = CityI.getY() + 50;
+            int x2 = CityJ.getX() + 35;
+            int y2 = CityJ.getY();
+            g2d.drawLine(x1, y1, x2, y2);
+
+            Font font = new Font("Arial", Font.PLAIN, 12);
+            g2d.setFont(font);
+            FontMetrics fontMetrics = g2d.getFontMetrics();
+            int textWidth = fontMetrics.stringWidth(text);
+            int textHeight = fontMetrics.getHeight();
+            int textX = (x1 + x2 - textWidth) / 2;
+            int textY = (y1 + y2 + textHeight) / 2;
+            g2d.drawString(text, textX, textY);
+
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1662,8 +1696,6 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         CityJ = new javax.swing.JLabel();
         btnIdentifyMinimumConnectersCheck = new fitos_games.LableRound();
         btnExit = new fitos_games.LableRound();
-        lblPath = new javax.swing.JLabel();
-        txtIdentifyMinimumConnectersAnswer = new javax.swing.JTextField();
         AtoB = new AtoB();
         AtoC = new AtoC();
         AtoD = new AtoD();
@@ -1709,6 +1741,8 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         HtoI = new HtoI();
         HtoJ = new HtoJ();
         ItoJ = new ItoJ();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        resultTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -1774,6 +1808,11 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         btnIdentifyMinimumConnectersCheck.setRoundBottomRight(60);
         btnIdentifyMinimumConnectersCheck.setRoundTopLeft(60);
         btnIdentifyMinimumConnectersCheck.setRoundTopRight(60);
+        btnIdentifyMinimumConnectersCheck.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                btnIdentifyMinimumConnectersCheckMouseWheelMoved(evt);
+            }
+        });
         btnIdentifyMinimumConnectersCheck.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnIdentifyMinimumConnectersCheckMouseClicked(evt);
@@ -1785,7 +1824,7 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
                 btnIdentifyMinimumConnectersCheckMouseExited(evt);
             }
         });
-        getContentPane().add(btnIdentifyMinimumConnectersCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 210, 233, 55));
+        getContentPane().add(btnIdentifyMinimumConnectersCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 610, 233, 55));
 
         btnExit.setBackground(new java.awt.Color(255, 51, 0));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
@@ -1807,32 +1846,8 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
                 btnExitMouseExited(evt);
             }
         });
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 290, 233, 55));
-
-        lblPath.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblPath.setForeground(new java.awt.Color(0, 0, 0));
-        lblPath.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPath.setText("A to H");
-        lblPath.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        getContentPane().add(lblPath, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 70, 233, 47));
-
-        txtIdentifyMinimumConnectersAnswer.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        txtIdentifyMinimumConnectersAnswer.setForeground(new java.awt.Color(0, 0, 0));
-        txtIdentifyMinimumConnectersAnswer.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtIdentifyMinimumConnectersAnswer.setText("Enter Your Answer");
-        txtIdentifyMinimumConnectersAnswer.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdentifyMinimumConnectersAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtIdentifyMinimumConnectersAnswerMouseClicked(evt);
-            }
-        });
-        txtIdentifyMinimumConnectersAnswer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdentifyMinimumConnectersAnswerActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtIdentifyMinimumConnectersAnswer, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 140, 233, 58));
-        getContentPane().add(AtoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 690, 233, 55));
+        getContentPane().add(AtoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 1680, 850));
         getContentPane().add(AtoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
         getContentPane().add(AtoD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
         getContentPane().add(AtoE, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
@@ -1878,15 +1893,121 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         getContentPane().add(HtoJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
         getContentPane().add(ItoJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
 
+        resultTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Source - Destination", "Distance"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(resultTable);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 150, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void btnIdentifyMinimumConnectersCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIdentifyMinimumConnectersCheckMouseClicked
-        // TODO add your handling code here:
+        Map<String, Integer> userData = new HashMap<String, Integer>();
+        
+        if (!resultTable.isEditing()) {
+            if (resultTable.getValueAt(0, 0) == null) {
+                JOptionPane.showMessageDialog(this, "You must fill the table to procced", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                int c = 0;
+                while (resultTable.getValueAt(c, 0) != null) {
+                    if (resultTable.getValueAt(c, 0) == null) {
+
+                        break;
+                    } else {
+                        if (!resultTable.getValueAt(c, 0).toString().matches("[a-zA-Z]{2}")) {
+                            JOptionPane.showMessageDialog(this, "Describe Path and Destination using only 2 letter\nEg:AB", "Error", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        } else if (resultTable.getValueAt(c, 0).toString().matches("^[0-9]*")) {
+                            JOptionPane.showMessageDialog(this, "Enter only the numbers for the destination", "Error", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        } else {
+                            userData.put(resultTable.getValueAt(c, 0).toString().toUpperCase(), Integer.parseInt(resultTable.getValueAt(c, 1).toString()));
+                        }
+                    }
+                    c++;
+                }
+                checkValues(userData);
+                //System.out.println(userData);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "If done with table editing please click somewhare else to proceed", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        
+        //System.out.println(userData);
+        //ctrl.setDistance(values);
+        //ctrl.checkConnecters();
 
     }//GEN-LAST:event_btnIdentifyMinimumConnectersCheckMouseClicked
 
+    private void checkValues(Map<String, Integer> userData){
+        ctrl.setDistance(values);
+        String result = ctrl.checkConnecters(userData);
+        
+        if(result.equals("NE")){
+            JOptionPane.showMessageDialog(this, "You haven't given enough values to check","Error...",JOptionPane.ERROR_MESSAGE);
+        }else if(result.equals("FA")){
+            JOptionPane.showMessageDialog(this, "The answers are not correct better luck next time","Error...",JOptionPane.ERROR_MESSAGE);
+        }else if(result.equals("PS")){
+            JOptionPane.showMessageDialog(this, "Congradulations you won the game","Congrats...",JOptionPane.INFORMATION_MESSAGE);
+            String playerName = JOptionPane.showInputDialog(this,"Enter your name to save game details","Congrats..",JOptionPane.QUESTION_MESSAGE);
+            try {
+                if(ctrl.savePlayer(playerName)){
+                    JOptionPane.showMessageDialog(this, "Player details added successfully","Done...",JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Something went wrong while saving please try again","Error...",JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Message: "+ex,"Error...",JOptionPane.ERROR_MESSAGE);
+            }catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Message: "+ex,"Error...",JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Something went wrong in our end will check and get back to you...","Error...",JOptionPane.ERROR_MESSAGE);
+        }
+    }
     private void btnIdentifyMinimumConnectersCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIdentifyMinimumConnectersCheckMouseEntered
         // TODO add your handling code here:
         btnIdentifyMinimumConnectersCheck.setBackground(Color.white);
@@ -1918,16 +2039,10 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         btnExit.setForeground(Color.white);
     }//GEN-LAST:event_btnExitMouseExited
 
-    private void txtIdentifyMinimumConnectersAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdentifyMinimumConnectersAnswerMouseClicked
-        // TODO add your handling code here:
-        txtIdentifyMinimumConnectersAnswer.setText("");
-
-    }//GEN-LAST:event_txtIdentifyMinimumConnectersAnswerMouseClicked
-
-    private void txtIdentifyMinimumConnectersAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentifyMinimumConnectersAnswerActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtIdentifyMinimumConnectersAnswerActionPerformed
+    private void btnIdentifyMinimumConnectersCheckMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_btnIdentifyMinimumConnectersCheckMouseWheelMoved
+        ctrl.setDistance(values);
+        ctrl.checkConnecters(true);
+    }//GEN-LAST:event_btnIdentifyMinimumConnectersCheckMouseWheelMoved
 
     /**
      * @param args the command line arguments
@@ -1986,13 +2101,13 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-         
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new IdentifyMinimumConnectersGame().setVisible(true);
-               
+
             }
         });
     }
@@ -2055,7 +2170,7 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
     private javax.swing.JLabel ItoJ;
     private fitos_games.LableRound btnExit;
     private fitos_games.LableRound btnIdentifyMinimumConnectersCheck;
-    private javax.swing.JLabel lblPath;
-    private javax.swing.JTextField txtIdentifyMinimumConnectersAnswer;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable resultTable;
     // End of variables declaration//GEN-END:variables
 }

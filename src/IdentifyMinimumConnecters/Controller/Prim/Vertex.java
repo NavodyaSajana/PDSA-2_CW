@@ -119,7 +119,7 @@ public class Vertex {
                 Map.Entry<Vertex, Edge> pair = it.next();
                 if (pair.getValue().isIncluded()) {
                     if (!pair.getValue().isPrinted()) {
-                        value.put(getLabel()+"-"+pair.getKey().getLabel(), pair.getValue().getWeight());
+                        value.put(getLabel()+""+pair.getKey().getLabel(), pair.getValue().getWeight());
                         pair.getValue().setPrinted(true);
                     }
                 }

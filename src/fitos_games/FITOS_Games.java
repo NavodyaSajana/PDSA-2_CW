@@ -17,7 +17,7 @@ public class FITOS_Games {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IdentifyMinimumConnectersController ct = new IdentifyMinimumConnectersController();
+        //IdentifyMinimumConnectersController ct = new IdentifyMinimumConnectersController();
     }
 
 }
