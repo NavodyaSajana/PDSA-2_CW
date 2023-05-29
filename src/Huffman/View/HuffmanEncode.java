@@ -4,8 +4,10 @@
  */
 package Huffman.View;
 
+import Huffman.Controller.HuffmanController;
 import fitos_games.Home;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,11 +21,12 @@ public class HuffmanEncode extends javax.swing.JFrame {
     public HuffmanEncode() {
         initComponents();
         this.setTitle("Huffman String Encode Game");
-  
-       
+
+        lblStringValue.setText(ctrl.genrateCustText());
+
     }
-     
-   
+
+    private HuffmanController ctrl = new HuffmanController();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,7 +44,6 @@ public class HuffmanEncode extends javax.swing.JFrame {
         btnExit = new fitos_games.LableRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(920, 448));
         setResizable(false);
 
         lblStringValue.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -170,14 +172,25 @@ public class HuffmanEncode extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void btnStringToEncodeCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStringToEncodeCheckMouseClicked
-        // TODO add your handling code here:
-         
+        if (txtStringToEncodAnswer.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Please submit your answer before check it", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (!txtStringToEncodAnswer.getText().matches("^[0-1]*")) {
+            JOptionPane.showMessageDialog(this, "Your answer must contains 1s and 0s", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String result = ctrl.findTheCode(txtStringToEncodAnswer.getText(), lblStringValue.getText());
+            if (result.equals("MATCH")) {
+                JOptionPane.showMessageDialog(this, "Congradulations this answer in correct", "Done...", JOptionPane.INFORMATION_MESSAGE);
+            } else if (result.equals("NOT")) {
+                JOptionPane.showMessageDialog(this, "This answer is incorrect better luck next time", "Oops..", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Something went wrong from our end please try  again", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnStringToEncodeCheckMouseClicked
 
     private void btnStringToEncodeCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStringToEncodeCheckMouseEntered
-        // TODO add your handling code here:
         btnStringToEncodeCheck.setBackground(Color.white);
         btnStringToEncodeCheck.setForeground(Color.decode("#9999FF"));
     }//GEN-LAST:event_btnStringToEncodeCheckMouseEntered
@@ -191,12 +204,17 @@ public class HuffmanEncode extends javax.swing.JFrame {
     private void txtStringToEncodAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtStringToEncodAnswerMouseClicked
         // TODO add your handling code here:
         txtStringToEncodAnswer.setText("");
-             
+
     }//GEN-LAST:event_txtStringToEncodAnswerMouseClicked
 
     private void btnStringToEncodeSeeAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStringToEncodeSeeAnswerMouseClicked
-        // TODO add your handling code here:
-       
+        String encodedText = ctrl.findTheCode(lblStringValue.getText());
+
+        JOptionPane.showMessageDialog(this, "Answer: " + encodedText, "Answer", JOptionPane.INFORMATION_MESSAGE);
+
+        HuffmanEncode he = new HuffmanEncode();
+        he.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnStringToEncodeSeeAnswerMouseClicked
 
     private void btnStringToEncodeSeeAnswerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnStringToEncodeSeeAnswerMouseEntered
@@ -213,8 +231,8 @@ public class HuffmanEncode extends javax.swing.JFrame {
 
     private void txtStringToEncodAnswerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStringToEncodAnswerActionPerformed
         // TODO add your handling code here:
-       
-       
+
+
     }//GEN-LAST:event_txtStringToEncodAnswerActionPerformed
 
     private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
@@ -236,8 +254,6 @@ public class HuffmanEncode extends javax.swing.JFrame {
         btnExit.setForeground(Color.white);
     }//GEN-LAST:event_btnExitMouseExited
 
-  
-    
     /**
      * @param args the command line arguments
      */

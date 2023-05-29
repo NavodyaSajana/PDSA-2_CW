@@ -4,7 +4,9 @@
  */
 package Huffman.View;
 
+import Huffman.Controller.HuffmanController;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +20,9 @@ public class HuffmanDecode extends javax.swing.JFrame {
     public HuffmanDecode() {
         initComponents();
         this.setTitle("Huffman String Decode Game");
+        cutText=ctrl.genrateCustText();
+        encoded = ctrl.findTheString(cutText);
+        lblEncodeValue.setText(encoded);
     }
 
     /**
@@ -134,39 +139,51 @@ public class HuffmanDecode extends javax.swing.JFrame {
                         .addGap(187, 187, 187)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblEncodeValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtEncodeToStringAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE))
-                        .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnEncodeToStringSeeAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEncodeToStringAnswer, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addComponent(btnEncodeToStringCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnEncodeToStringSeeAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEncodeToStringCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEncodeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEncodeToStringSeeAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblEncodeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEncodeToStringAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtEncodeToStringAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEncodeToStringCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEncodeToStringSeeAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    private String encoded="";
+    private String cutText="";
+    private HuffmanController ctrl = new HuffmanController();
+    
     private void btnEncodeToStringCheckMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEncodeToStringCheckMouseClicked
-        // TODO add your handling code here:
-
+        if (txtEncodeToStringAnswer.getText() == null) {
+            JOptionPane.showMessageDialog(this, "Please submit your answer before check it", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String result = ctrl.findTheString(txtEncodeToStringAnswer.getText(), cutText);
+            if (result.equals("MATCH")) {
+                JOptionPane.showMessageDialog(this, "Congradulations this answer in correct", "Done...", JOptionPane.INFORMATION_MESSAGE);
+            } else if (result.equals("NOT")) {
+                JOptionPane.showMessageDialog(this, "This answer is incorrect better luck next time", "Oops..", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Something went wrong from our end please try  again", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnEncodeToStringCheckMouseClicked
 
     private void btnEncodeToStringCheckMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEncodeToStringCheckMouseEntered
@@ -193,8 +210,11 @@ public class HuffmanDecode extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEncodeToStringAnswerActionPerformed
 
     private void btnEncodeToStringSeeAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEncodeToStringSeeAnswerMouseClicked
-        // TODO add your handling code here:
-
+        JOptionPane.showMessageDialog(this, cutText);
+        
+        HuffmanEncode he = new HuffmanEncode();
+        he.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEncodeToStringSeeAnswerMouseClicked
 
     private void btnEncodeToStringSeeAnswerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEncodeToStringSeeAnswerMouseEntered
