@@ -5,6 +5,7 @@
 package fitos_games;
 
 import EightQueenPuzzle.Controller.EightQueenPuzzleController;
+import IdentifyMinimumConnecters.Controller.IdentifyMinimumConnectersController;
 
 /**
  *
@@ -16,6 +17,7 @@ public class FITOS_Games {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        IdentifyMinimumConnectersController ct = new IdentifyMinimumConnectersController();
     }
-    
+
 }
