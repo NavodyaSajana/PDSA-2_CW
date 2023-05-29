@@ -4,19 +4,18 @@
  */
 package IdentifyShortestPath.Controller;
 
-import IdentifyShortestPath.Dijkstra;
-import IdentifyShortestPath.Graph;
-import IdentifyShortestPath.Node;
-import java.util.Arrays;
-import java.util.List;
+import IdentifyShortestPath.Model.IdentifyShortestPathModel;
+import java.sql.SQLException;
 
 /**
  *
- * 
+ *
  * @author Hikma
  */
 public class IdentifyShortestPath {
-    public void start() {
+
+    public int start(int[] distance, String destination) {
+        int distanceSum = 0;
         Dijkstra dj = new Dijkstra();
 
         Node nodeA = new Node("A");
@@ -25,19 +24,27 @@ public class IdentifyShortestPath {
         Node nodeD = new Node("D");
         Node nodeE = new Node("E");
         Node nodeF = new Node("F");
+        Node nodeG = new Node("G");
+        Node nodeH = new Node("H");
+        Node nodeI = new Node("I");
+        Node nodeJ = new Node("J");
 
-        nodeA.addDestination(nodeB, 10);
-        nodeA.addDestination(nodeC, 15);
+        nodeA.addDestination(nodeI, distance[0]);
+        nodeA.addDestination(nodeJ, distance[1]);
+        nodeA.addDestination(nodeF, distance[2]);
+        nodeA.addDestination(nodeB, distance[3]);
+        nodeA.addDestination(nodeE, distance[4]);
 
-        nodeB.addDestination(nodeD, 12);
-        nodeB.addDestination(nodeF, 15);
+        nodeE.addDestination(nodeG, distance[5]);
+        nodeE.addDestination(nodeB, distance[6]);
 
-        nodeC.addDestination(nodeE, 10);
+        nodeB.addDestination(nodeC, distance[7]);
 
-        nodeD.addDestination(nodeE, 2);
-        nodeD.addDestination(nodeF, 1);
+        nodeC.addDestination(nodeH, distance[8]);
 
-        nodeF.addDestination(nodeE, 5);
+        nodeH.addDestination(nodeD, distance[9]);
+
+        nodeD.addDestination(nodeJ, distance[10]);
 
         Graph graph = new Graph();
 
@@ -47,15 +54,109 @@ public class IdentifyShortestPath {
         graph.addNode(nodeD);
         graph.addNode(nodeE);
         graph.addNode(nodeF);
+        graph.addNode(nodeG);
+        graph.addNode(nodeH);
+        graph.addNode(nodeI);
+        graph.addNode(nodeJ);
 
         graph = Dijkstra.calculateShortestPathFromSource(graph, nodeA);
 
-        List<Node> shortestPathForNodeB = Arrays.asList(nodeA);
-        List<Node> shortestPathForNodeC = Arrays.asList(nodeA);
-        List<Node> shortestPathForNodeD = Arrays.asList(nodeA, nodeB);
-        List<Node> shortestPathForNodeE = Arrays.asList(nodeA, nodeB, nodeD);
-        List<Node> shortestPathForNodeF = Arrays.asList(nodeA, nodeB, nodeD);
+        switch (destination) {
+            case "B": {
+                distanceSum=0;
+                for (Node node : nodeB.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+nodeB.getDistance();
+                }
+                break;
+            }
+            case "C": {
+                distanceSum=0;
+                for (Node node : nodeC.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+nodeC.getDistance();
+                }
+                break;
+            }
+            case "D": {
+                distanceSum=0;
+                for (Node node : nodeD.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+nodeD.getDistance();
+                }
+                break;
+            }
+            case "E": {
+                distanceSum=0;
+                for (Node node : nodeE.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());                    
+                    distanceSum = distanceSum + node.getDistance()+nodeE.getDistance();
+                }
+                break;
+            }
+            case "F": {
+                distanceSum=0;
+                for (Node node : nodeF.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance() + nodeF.getDistance();
+                }
+                break;
+            }
+            case "G": {
+                distanceSum=0;
+                for (Node node : nodeG.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+ nodeG.getDistance();
+                }
+                break;
+            }
+            case "H": {
+                for (Node node : nodeH.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+ nodeH.getDistance();
+                }
+                break;
+            }
+            case "I": {
+                distanceSum=0;
+                for (Node node : nodeI.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+ nodeI.getDistance();
+                }
+                break;
+            }
+            case "J": {
+                distanceSum=0;
+                for (Node node : nodeJ.getShortestPath()) {
+                    //System.out.println(node.getName());
+                    //System.out.println(node.getDistance());
+                    distanceSum = distanceSum + node.getDistance()+ nodeJ.getDistance();
+                }
+                break;
+            }
+            
+        }
 
-        System.out.println(graph);
+        return distanceSum;
+    }
+
+    public int generateRandom() {
+        int random = 0;
+        int min = 5, max = 50;
+
+        return (int) (Math.random() * (max - min + 1) + min);
+    }
+
+    public boolean savePlayerDetails(String playerName, String cities) throws SQLException {
+        IdentifyShortestPathModel model = new IdentifyShortestPathModel();
+        return model.insertPlayer(playerName,cities);
     }
 }

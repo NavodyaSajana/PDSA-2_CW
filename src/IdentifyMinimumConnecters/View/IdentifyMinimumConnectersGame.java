@@ -35,61 +35,6 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         this.setTitle("Identify minimum connecters Game");
 
         hideDistance();
-        /*String textValue = "500KM";
-         AtoB.setText(textValue);
-         AtoC.setText(textValue);
-         AtoD.setText(textValue);
-         AtoE.setText(textValue);
-         AtoF.setText(textValue);
-         AtoG.setText(textValue);
-         AtoH.setText(textValue);
-         AtoI.setText(textValue);
-         AtoJ.setText(textValue);
-         
-         BtoC.setText(textValue);
-         BtoD.setText(textValue);
-         BtoE.setText(textValue);
-         BtoF.setText(textValue);
-         BtoG.setText(textValue);
-         BtoH.setText(textValue);
-         BtoI.setText(textValue);
-         BtoJ.setText(textValue);
-         
-         CtoD.setText(textValue);
-         CtoE.setText(textValue);
-         CtoF.setText(textValue);
-         CtoG.setText(textValue);
-         CtoH.setText(textValue);
-         CtoI.setText(textValue);
-         CtoJ.setText(textValue);
-         
-         DtoE.setText(textValue);
-         DtoF.setText(textValue);
-         DtoG.setText(textValue);
-         DtoH.setText(textValue);
-         DtoI.setText(textValue);
-         DtoJ.setText(textValue);
-         
-         EtoF.setText(textValue);
-         EtoG.setText(textValue);
-         EtoH.setText(textValue);
-         EtoI.setText(textValue);
-         EtoJ.setText(textValue);
-         
-         FtoG.setText(textValue);
-         FtoH.setText(textValue);
-         FtoI.setText(textValue);
-         FtoJ.setText(textValue);
-         
-         GtoH.setText(textValue);
-         GtoI.setText(textValue);
-         GtoJ.setText(textValue);
-         
-         HtoI.setText(textValue);
-         HtoJ.setText(textValue);
-         
-         HtoI.setText(textValue);
-         ItoJ.setText(textValue);*/
 
         setDistance();
 
