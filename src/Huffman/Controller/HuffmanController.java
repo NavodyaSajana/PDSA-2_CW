@@ -14,43 +14,53 @@ public class HuffmanController {
 
     Huffman hf = new Huffman();
 
-    public void findTheCode(String input) {
-        //needs to add validations
-
-        //String customString = "Sajana";
-        String customString = genrateCustText();
-
-        System.out.println("Enter the encoded value for below Text");
-        System.out.println(customString);
-
-        String encodedCustomString = hf.encode(customString);
+    public String findTheCode(String input,String custText) {
+        
+        String RESULT = "";
+        String encodedCustomString = hf.encode(custText);        
+        System.out.println(encodedCustomString);
 
         if (encodedCustomString.equals(input)) {
-            System.out.println("Values are matching");
+            RESULT = "MATCH";
         } else {
-            System.out.println("Values are not matching");
+            RESULT = "NOT";
         }
+        
+        return RESULT;
+    }
+    
+    public String findTheCode(String custText) {
+        return hf.encode(custText);
     }
 
-    public void findTheString(String input) {
-
-        
-        //String customString = "Sajana";
-        String customString = genrateCustText();
-        System.out.println("Enter the decoded value for below Text");
+    public String findTheString(String input,String custString) {
+        String RESULT = "";
+        String customString = custString;
         String customEncode = hf.encode(customString);
         System.out.println(customEncode);
 
         String customDecode = hf.decode(customEncode, hf.getTree());
 
         if (customDecode.equals(input)) {
-            System.out.println("Values are matching");
+            RESULT = "MATCH";
         } else {
-            System.out.println("Values are not matching");
+            RESULT = "NOT";
         }
+        
+        return RESULT;
+    }
+    
+    public String findTheString(String custString) {
+        String customEncode = hf.encode(custString);
+        return hf.encode(custString);
+    }
+    
+    public String findTheString(String custString,boolean isAnswer) {
+        String customEncode = hf.encode(custString);
+        return hf.decode(customEncode, hf.getTree());
     }
 
-    static String genrateCustText() {
+    public String genrateCustText() {
 
         String AlphaNumericStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789";
 
