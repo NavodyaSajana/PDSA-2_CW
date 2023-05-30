@@ -1769,7 +1769,7 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
                 btnIdentifyMinimumConnectersCheckMouseExited(evt);
             }
         });
-        getContentPane().add(btnIdentifyMinimumConnectersCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 610, 233, 55));
+        getContentPane().add(btnIdentifyMinimumConnectersCheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 650, 233, 55));
 
         btnExit.setBackground(new java.awt.Color(255, 51, 0));
         btnExit.setForeground(new java.awt.Color(255, 255, 255));
@@ -1791,7 +1791,9 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
                 btnExitMouseExited(evt);
             }
         });
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 690, 233, 55));
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 720, 233, 55));
+
+        AtoB.setBackground(new java.awt.Color(153, 153, 255));
         getContentPane().add(AtoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, -10, 1680, 850));
         getContentPane().add(AtoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
         getContentPane().add(AtoD, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
@@ -1838,6 +1840,13 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
         getContentPane().add(HtoJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
         getContentPane().add(ItoJ, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1680, 850));
 
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setHorizontalScrollBar(null);
+
+        resultTable.setBackground(new java.awt.Color(255, 255, 255));
+        resultTable.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        resultTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        resultTable.setForeground(new java.awt.Color(0, 0, 0));
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -1879,9 +1888,14 @@ public class IdentifyMinimumConnectersGame extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        resultTable.setGridColor(new java.awt.Color(153, 153, 255));
+        resultTable.setRowHeight(25);
+        resultTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
+        resultTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        resultTable.setShowGrid(true);
         jScrollPane1.setViewportView(resultTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 150, -1, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 27, -1, 600));
 
         pack();
         setLocationRelativeTo(null);

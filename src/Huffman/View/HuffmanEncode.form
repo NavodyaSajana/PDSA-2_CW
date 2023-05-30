@@ -30,20 +30,19 @@
                       <EmptySpace min="-2" pref="187" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="lblStringValue" max="32767" attributes="0"/>
-                          <Component id="txtStringToEncodAnswer" pref="286" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnStringToEncodeSeeAnswer" min="-2" pref="233" max="-2" attributes="0"/>
-                          <Component id="btnExit" min="-2" pref="233" max="-2" attributes="0"/>
+                          <Component id="txtStringToEncodAnswer" pref="786" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
                       <Component id="btnStringToEncodeCheck" min="-2" pref="233" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnStringToEncodeSeeAnswer" min="-2" pref="233" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnExit" min="-2" pref="233" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="108" max="32767" attributes="0"/>
+              <EmptySpace pref="156" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,18 +50,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblStringValue" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
-                  <Component id="btnStringToEncodeSeeAnswer" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-              </Group>
+              <Component id="lblStringValue" min="-2" pref="58" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="txtStringToEncodAnswer" min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtStringToEncodAnswer" alignment="3" min="-2" pref="58" max="-2" attributes="0"/>
+                  <Component id="btnStringToEncodeCheck" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnStringToEncodeSeeAnswer" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="btnExit" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnStringToEncodeCheck" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace pref="162" max="32767" attributes="0"/>
+              <EmptySpace pref="132" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
