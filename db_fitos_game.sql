@@ -1,0 +1,110 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: May 30, 2023 at 05:03 PM
+-- Server version: 5.7.31
+-- PHP Version: 7.3.21
+
+SET FOREIGN_KEY_CHECKS=0;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_fitos_game`
+--
+
+--
+-- Database: `db_fitos_game`
+--
+CREATE DATABASE IF NOT EXISTS `db_fitos_game` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `db_fitos_game`;
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_e8_gameplay`
+--
+
+DROP TABLE IF EXISTS `tbl_e8_gameplay`;
+CREATE TABLE IF NOT EXISTS `tbl_e8_gameplay` (
+  `player_id` int(11) NOT NULL,
+  `player_name` varchar(15) NOT NULL,
+  `pattern_id` int(11) NOT NULL,
+  PRIMARY KEY (`player_id`),
+  KEY `FK_Pattern_id` (`pattern_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_minimumconnecters`
+--
+
+DROP TABLE IF EXISTS `tbl_minimumconnecters`;
+CREATE TABLE IF NOT EXISTS `tbl_minimumconnecters` (
+  `PlayerID` int(11) NOT NULL AUTO_INCREMENT,
+  `PlayerName` varchar(20) NOT NULL,
+  `Map` varchar(250) NOT NULL,
+  PRIMARY KEY (`PlayerID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pattern`
+--
+
+DROP TABLE IF EXISTS `tbl_pattern`;
+CREATE TABLE IF NOT EXISTS `tbl_pattern` (
+  `pattern_id` int(11) NOT NULL,
+  `pattern` varchar(64) NOT NULL,
+  PRIMARY KEY (`pattern_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_pattern`
+--
+
+INSERT INTO `tbl_pattern` (`pattern_id`, `pattern`) VALUES
+(1, '0001000000000010001000000000000101000000000010001000000000000100'),
+(2, '0000100001000000000100000000001000100000000000010000010010000000'),
+(3, '0001000001000000000000100010000000000100000000010000100010000000'),
+(4, '0001000000000100000000010010000010000000000000100000100001000000'),
+(5, '0010000000000100000000011000000000010000000000100000100001000000'),
+(6, '0000100000100000000000010001000000000010100000000000010001000000'),
+(7, '0000100000000010000100001000000000100000000000010000010001000000'),
+(8, '0001000010000000000010000000000100000100001000000000001001000000'),
+(9, '0010000000000100000100001000000000000001000010000000001001000000'),
+(10, '0000010001000000000000101000000000010000000000010000100000100000'),
+(11, '0001000000000010100000000000000100001000010000000000010000100000'),
+(12, '0000010000010000000000101000000000000001010000000000100000100000');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_shortestpath`
+--
+
+DROP TABLE IF EXISTS `tbl_shortestpath`;
+CREATE TABLE IF NOT EXISTS `tbl_shortestpath` (
+  `playerID` int(11) NOT NULL AUTO_INCREMENT,
+  `playerName` varchar(15) NOT NULL,
+  `cities` varchar(1000) NOT NULL,
+  PRIMARY KEY (`playerID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
