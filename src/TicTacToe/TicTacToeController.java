@@ -143,44 +143,6 @@ public class TicTacToeController {
     }
 
     //This methoed based on CLI and can be use for testing purposes in this class
-    public void play() {
-        Scanner scanner = new Scanner(System.in);
-        int row, col;
-
-        System.out.println("Welcome to Tic Tac Toe!");
-        System.out.println("You are playing as " + HUMAN_PLAYER + ".");
-        System.out.println("Enter the row (0-2) and column (0-2) to make your move.");
-
-        while (!isGameOver()) {
-            printBoard();
-
-            do {
-                System.out.print("Your move: ");
-                row = scanner.nextInt();
-                col = scanner.nextInt();
-            } while (!isCellEmpty(row, col));
-
-            makeHumanMove(row, col);
-
-            if (isGameOver()) {
-                break;
-            }
-
-            makeAIMove();
-        }
-
-        printBoard();
-
-        if (checkWin(HUMAN_PLAYER)) {
-            System.out.println("You win!");
-        } else if (checkWin(AI_PLAYER)) {
-            System.out.println("You lose!");
-        } else {
-            System.out.println("It's a draw!");
-        }
-
-        scanner.close();
-    }
 
     public boolean isCellEmpty(int row, int col) {
         return board[row][col] == EMPTY_CELL;
@@ -189,7 +151,7 @@ public class TicTacToeController {
     //this method is designed to use in GUI
     public String play(int row, int col) {
         //use getBoard() method without using printBoard() in the implementation.
-        printBoard();
+        //printBoard();
         if (!isGameOver()) {
             makeHumanMove(row, col);
             if (!isGameOver()) {
@@ -197,13 +159,10 @@ public class TicTacToeController {
             }
             if (isGameOver()) {
                 if (checkWin(HUMAN_PLAYER)) {
-                    System.out.println("You win!");
                     return "HUMAN";
                 } else if (checkWin(AI_PLAYER)) {
-                    System.out.println("You lose!");
                     return "AI";
                 } else {
-                    System.out.println("It's a draw!");
                     return "DRAW";
                 }
             }
