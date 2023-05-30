@@ -4,9 +4,6 @@
  */
 package EightQueenPuzzle.Controller;
 
-import EightQueenPuzzle.View.EightQueens;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Sajana
